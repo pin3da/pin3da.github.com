@@ -12,25 +12,25 @@
   </head>
 
   <body>
-
-    <header>
-      <div class="container">
-        <h1>Manuel Pineda</h1>
-        <h2>Programming notes</h2>
-
-        <section id="downloads">
-          <a href="https://github.com/pin3da" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-          <a href="./editor.html" class="btn"><span class="icon"></span>Online Editor</a>
-        </section>
-
-      </div>
-    </header>
-
     <div class="container">
       <section id="main_content">
-        <h3>My first experience with GitHub Pages.</h3>
+        <div id="editor"></div>
+        <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+          var editor = ace.edit("editor");
+          editor.setTheme("ace/theme/tomorrow_night");
+          editor.getSession().setMode("ace/mode/c_cpp");
+          
+          editor.commands.addCommand({
+            name: 'myCommand',
+            bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+            exec: function(editor) {
+              window.alert("The editor doesn't support save yet");
+            },
+            readOnly: true // false if this command should not apply in readOnly mode
+          });
+        </script>
 
-        <p>Principally i hope this page help you a little, this is my first "webpage experience" so if you have a cool idea, tell me.</p>
       </section>
     </div>
 
