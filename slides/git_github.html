@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Git - github</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Git - github
+
+*Manuel Pineda*
+[@pin3da_](https://twitter.com/pin3da_)
+
+---
+
+# Problema :
+
+## ¿ Cómo escribir código colaborativamente ?
+
+--
+
+#### Malas soluciones (Antes):
+
+- Reuniones presenciales.
+- Enviar código por correo electrónico.
+- Esperar a que los demás terminen su trabajo.
+
+#### Desventajas :
+
+- Desarrollo síncrono.
+- Es muy propenso a bugs
+
+---
+
+
+## ¿ Cómo administrar mis proyectos ?
+
+Por ejemplo, agregar una nueva funcionalidad a un proyecto
+estable.
+
+--
+
+#### Malas soluciones (Antes):
+
+- Crear copias del proyecto por fechas.
+
+#### Desventajas :
+
+- Se pueden tener 'versiones' muy lejanas entre sí y perder mucho trabajo.
+- Ocupa mucho espacio (y tiempo).
+
+---
+
+# Solución :
+
+### Sistema de control de versiones
+
+Es un sistema para administrar proyectos basado en los cambios que se han realizado.
+
+Generalmente se utiliza algún tipo de marca, para volver a estados anteriores.
+
+#### Ventajas
+
+Trabajo en paralelo por parte del equipo.
+Trabajo de manera asíncrona.
+
+#### Ejemplos:
+
+- Subversion : Centralizado.
+- Git        : Distribuido.
+
+---
+
+# Git : "cool kids" version control system.
+
+- Distribuido.
+- Open Source.
+- Fácil de usar.
+- Maneja grandes proyectos.
+- Eficiente y rápido.
+- Representa el proyecto como un DAG basado en los commits.
+
+![Work flow and marks](./images/git1.png)
+
+---
+
+# ¿ Quién usa Git ?
+
+--
+#### Linux Kernel.
+
+--
+
+#### Android.
+
+--
+
+#### Ruby on Rails.
+
+--
+
+## PereiraJS !!
+
+---
+
+# Comandos Básicos : Primer repositorio git.
+
+```bash
+$ git init
+$ vim test.html
+$ git status
+$ git add test.html
+$ git status
+$ git commit -m "Primer commit"
+$ git log
+```
+
+Agregando algo :
+```bash
+$ vim test.html
+$ git add test.html
+$ git commit -m "Segundo commit"
+```
+
+
+Arreglando el daño :
+```bash
+$ git log
+$ git reset <####>
+```
+---
+
+# Github : Social Coding.
+
+---
+
+![github rules](./images/git2.png)
+
+---
+    </textarea>
+    <script src="//gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "pin3da.github.com",
+  "version": "1.0.0",
+  "description": "Personal Web Page and Slides",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/http-server ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pin3da/pin3da.github.com.git"
+  },
+  "author": "Manuel Pineda <@pin3da>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pin3da/pin3da.github.com/issues"
+  },
+  "homepage": "https://github.com/pin3da/pin3da.github.com",
+  "dependencies": {
+    "http-server": "^0.7.3"
+  }
+}
