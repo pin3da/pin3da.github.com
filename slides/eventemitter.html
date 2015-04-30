@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Event Emitter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# EventEmitter
+
+*Manuel Pineda*
+[@pin3da_](https://twitter.com/pin3da_)
+
+---
+
+# References
+
+[Nodejs API](https://nodejs.org/api/events.html)
+
+---
+
+# What is EventEmitter?
+
+It is a node module which allows programmer to add event listener and to emit the events. Where,
+
+* listener : Waits for event to occur.
+* emitter  : It broadcast the event for particular listener(s).
+
+---
+
+# Syntax
+
+```js
+var EventEmitter = require('events').EventEmitter;
+var emitter = new EventEmitter();
+```
+
+# Uses
+
+```js
+emitter.on(‘name_of_event’,function(arg..){
+         // rest of code
+});
+emitter.emit(‘name_of_event’);
+```
+
+---
+
+# .on and .once
+
+* .on is the event listener which invoke on capturing the particular event.
+
+* .once invokes at first time when event is triggered and it will be only invoked when that particular event is removed and emit again.
+
+---
+
+# removeListener and removeAllListeners :
+
+```js
+emitter.removeListener('print_content',function(){
+});
+
+//this will remove the listener for print_content event.
+emitter.removeAllListeners('start_read');
+//All the listener waiting for this event will be removed
+```
+---
+
+# live
+
+    </textarea>
+    <script src="//gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
