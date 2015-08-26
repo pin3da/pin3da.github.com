@@ -21,6 +21,22 @@
         position: absolute;
         bottom: 3em;
       }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+        color: #000;
+      }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
     </style>
   </head>
   <body>
@@ -39,6 +55,26 @@ class: center, middle
 
 # Why is this necesary ?
 
+--
+- "This is the science of programming: make building blocks that people can
+understand and use easily, and people will work together to solve the very
+largest problems." .red[*]
+
+--
+- We need robust messaging services.
+
+--
+- We need to design different patterns for different tasks.
+
+--
+- Testability
+
+--
+
+- We **need** decentralized computing.
+
+
+.footnote[.red.bold[*] http://zguide.zeromq.org/page:all#Fixing-the-World]
 
 ---
 
@@ -61,43 +97,141 @@ class: center, middle
 # Why ZeroMQ ?
 
 
-- How do we handle I/O? Does our application block, or do we handle I/O in the background? This is a key design decision. Blocking I/O creates architectures that do not scale well. But background I/O can be very hard to do right.
-
-- How do we handle dynamic components, i.e., pieces that go away temporarily? Do we formally split components into "clients" and "servers" and mandate that servers cannot disappear? What then if we want to connect servers to servers? Do we try to reconnect every few seconds?
+- How do we handle I/O? Blocking I/O creates architectures that do not scale well. But background I/O can be very hard to do right.
 
 - How do we represent a message on the wire? How do we frame data so it's easy to write and read, safe from buffer overflows, efficient for small messages, yet adequate for the very largest videos of dancing cats wearing party hats?
 
-- How do we handle messages that we can't deliver immediately? Particularly, if we're waiting for a component to come back online? Do we discard messages, put them into a database, or into a memory queue?
+- How do we handle messages that we can't deliver immediately?
 
-- Where do we store message queues? What happens if the component reading from a queue is very slow and causes our queues to build up? What's our strategy then?
+- How do we handle lost messages?
 
-- How do we handle lost messages? Do we wait for fresh data, request a resend, or do we build some kind of reliability layer that ensures messages cannot be lost? What if that layer itself crashes?
-
+.footnote[.red.bold[*] http://zguide.zeromq.org/page:all#Why-We-Needed-ZeroMQ]
 
 ---
 
 # Why ZeroMQ ?
 
 
-- What if we need to use a different network transport. Say, multicast instead of TCP unicast? Or IPv6? Do we need to rewrite the applications, or is the transport abstracted in some layer?
-
-- How do we route messages? Can we send the same message to multiple peers? Can we send replies back to an original requester?
+- What if we need to use a different network transport. Say, multicast instead of TCP unicast? Or IPv6?
 
 - How do we write an API for another language? Do we re-implement a wire-level protocol or do we repackage a library? If the former, how can we guarantee efficient and stable stacks? If the latter, how can we guarantee interoperability?
 
-- How do we represent data so that it can be read between different architectures? Do we enforce a particular encoding for data types? How far is this the job of the messaging system rather than a higher layer?
-
 - How do we handle network errors? Do we wait and retry, ignore them silently, or abort?
+
+.footnote[.red.bold[*] http://zguide.zeromq.org/page:all#Why-We-Needed-ZeroMQ]
+
+---
+
+# Why ZeroMQ ?
+
+--
+- Open source and digital revolution.
+
+http://cultureandempire.com/#/
+
+---
+# Node and asynchronous power
+
+
+--
+
+- Event-loop-based development model makes the ZeroMQ + Node combination
+something beautiful
+
+- Powerful serialize/deserialize (JSON).
+
+--
+
+- Both are really important open-source communities.
+
+--
+
+Let's go !
+
+- Install ZeroMQ
+
+http://zeromq.org/intro:get-the-software
+
+- Install the nodejs binding
+
+```
+ npm install zmq
+```
 
 ---
 
 # How does it work ?
 
+- sockets.
+
+- message queue.
+
+- patterns.
 
 ---
 
-# Patterns and sockets
+# Sockets (with steroids).
 
+.left-column[
+  ### synchronous
+]
+
+.right-column[
+- REQ
+
+- REP
+]
+
+---
+
+# Sockets (with steroids).
+
+.left-column[
+  ### synchronous
+  ### asynchronous
+]
+
+.right-column[
+- DEALER
+
+- ROUTER
+
+- PUB
+
+- SUB
+
+- PUSH
+
+- PULL
+]
+
+---
+
+# Message queue
+
+```Javascript
+socket.send("Hello", zmq.ZMQ_SNDMORE);
+socket.send("World");
+```
+
+another way :
+```Javascript
+socket.send(["Hello", "World"]);
+```
+--
+
+This message is atomic, ZeroMQ warrants that peers receive all the
+message pats or none at all.
+
+The total number of message parts is bounded by available memory.
+
+---
+
+# Patterns
+
+- Write your code in the right way.
+
+- Socket election will be meaningful in your design.
 
 ---
 
@@ -105,37 +239,37 @@ class: center, middle
 
 ![reqrep](https://github.com/imatix/zguide/raw/master/images/fig2.png)
 
+- Connect a server with many clients synchronously.
+
+- Synchronous task distribution.
+
 ---
 
 # Publish-Subscribe
 
 ![publishsubscribe](https://github.com/imatix/zguide/raw/master/images/fig4.png)
 
+- Connect a server with many clients asynchronously.
+
+- Publish information from a source (broadcast).
 
 ---
 
 # Parallel Pipeline
 
+Ideal to do the "hard work" in workers.
+
 ![pipeline](https://github.com/imatix/zguide/raw/master/images/fig5.png)
-
----
-
-# Node
-
-```
- npm install zmq
-```
-
-
----
-
-# Asynchronous power
-
 
 ---
 
 # Connect Node with other languages using ZeroMQ (C/C++ example)
 
+---
+
+class: center, middle
+
+# Thanks
 
     </textarea>
     <script src="//gnab.github.io/remark/downloads/remark-latest.min.js">
