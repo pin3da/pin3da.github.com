@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Aburridooo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .red { color: #fa0000; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+        color: #000;
+      }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Proceso de evaluación
+## (Transición de los Servicios TI)
+
+*Manuel Pineda*
+
+---
+
+# Descripción.
+
+Es evidente que, a la hora de tomar cualquier decisión relacionada con la
+incorporación de un nuevo servicio o de un cambio en uno ya existente, **es
+preciso valorar los pros y contras**, así como la relación coste-beneficio
+que aportará una vez esté en marcha.
+
+--
+
+Aunque la decisión última recae en otros procesos, **es la Evaluación la
+encargada de recoger y analizar toda la información disponible sobre el
+cambio o nuevo servicio** y elaborar los informes necesarios para tomar
+estas decisiones.
+
+---
+
+# Inputs
+
+
+- El **Diseño del Servicio** aportará el SDP .red[*], donde figuran las características
+del servicio nuevo o modificado.
+
+
+- La **Gestión de Cambios** proporcionará la documentación necesaria para llevar
+la evaluación a cabo: registro de la RFC, informe de impacto y riesgos
+previstos, etc...
+
+
+- La **Validación y Pruebas del Servicio** suministra, por su parte,
+el informe de resultados de las labores de testeo.
+
+.footnote[.red.bold[*] Service Design Package]
+---
+
+#Outputs
+
+La Evaluación, por su parte, toma los datos proporcionados por estos
+procesos y genera una serie de informes de evaluación que servirán para que:
+
+- La **Gestión de Cambios** cuente con la información de contexto necesaria para
+aprobar o no cada solicitud de cambio.
+
+- La **Mejora Continua del Servicio** detecte necesidades o carencias relacionadas
+con el rendimiento y proponga nuevas RFC.
+
+---
+
+# Objetivo
+
+El objetivo principal de la Evaluación consiste en proporcionar la información
+suficiente para **determinar con seguridad si un aspecto del servicio es útil
+para el negocio**, ya sea porque incrementa su calidad o porque proporciona una
+**mejora en la productividad.** .red[*]
+
+
+--
+
+No debe confundirse esta labor con la de verificar si el servicio cumple
+los requisitos mínimos de calidad, eficacia y utilidad, que corresponde
+a la Validación y Pruebas del Servicio.
+
+--
+
+.footnote[.red.bold[*] Aplicación directa al PETI]
+
+
+---
+
+# Dificultades
+
+- Las evaluaciones no se gestionan con suficiente agilidad y se generan
+cuellos de botella que retrasan la implementación del cambio.
+
+- Los resultados de la Validación y Pruebas del Servicio son incompletos
+o poco detallados, lo que puede resultar en una evaluación sesgada.
+
+- El modelo de rendimiento no refleja el servicio en toda su complejidad,
+ocasionando un constante desequilibrio entre las estimaciones iniciales
+de rendimiento previsto y el rendimiento real del servicio una vez
+implantados los cambios.
+
+- No se analiza el rendimiento del servicio con suficiente celo, por lo
+que algunos efectos imprevistos del cambio no llegan a advertirse.
+
+
+---
+
+# Proceso.
+
+Las actividades de la Evaluación se resumen en:
+
+--
+
+- **Planificación de la evaluación**. Consiste en analizar los efectos,
+tanto previstos como imprevistos, de la puesta en marcha de un cambio
+o nuevo servicio.
+
+--
+
+- **Evaluación del rendimiento previsto**. Se realiza antes de implementar
+el cambio y consiste en predecir los efectos que éste tendrá una vez
+esté operativo.
+
+--
+
+- **Evaluación del rendimiento real**. Se realiza una vez el cambio ha sido
+ya implementado, y consiste en analizar los efectos que ha provocado
+su puesta en marcha.
+
+---
+
+# Planificación de la evaluación
+
+Con el fin de predecir el impacto de un cambio, la Evaluación considerará
+los siguientes factores:
+
+
+- **Capacidad del proveedor de Servicios (S)**. La capacidad de un proveedor
+o de una unidad de servicio para desempeñar su trabajo.
+
+- **Tolerancia (T)**. La capacidad que tiene el servicio para absorber cambios.
+
+- **Configuración de la Organización (O)**. La capacidad que tiene la
+organización TI para absorber cambios.
+
+- **Recursos (R)**. Disponibilidad de la necesaria infraestructura, personal
+cualificado, fondos económicos, etc. para llevar a cabo la transición.
+
+---
+
+# Planificación de la evaluación
+
+Con el fin de predecir el impacto de un cambio, la Evaluación considerará
+los siguientes factores:
+
+- **Modelado y medidas (M)**. Grado en que las predicciones formuladas a partir
+del modelo de rendimiento coinciden con el comportamiento real del servicio modificado.
+
+- **Personas (P)**. Las personas dentro del sistema y el efecto del cambio en ellas.
+
+- **Uso (U)**. Grado en que el servicio cumple con las expectativas de uso
+(p.ej. disponibilidad, capacidad, seguridad, etc.)
+
+- **Propósito (P)**. Grado en que el servicio se ajusta al propósito inicial.
+
+---
+
+# Evaluación de rendimiento *previsto*
+
+Si la Evaluación concluye que el rendimiento real **no coincide con lo previsto,
+acarrea riesgos inaceptables o bien se desvía de los criterios de aceptación**,
+se interrumpen las actividades de evaluación y se genera un **Informe Intermedio
+de Valoración**, que será enviado a la Gestión de Cambios.
+
+Si, en cambio, la Evaluación concluye que el rendimiento previsto **coincide
+con lo esperado**, se procede al despliegue del cambio y a la evaluación del
+rendimiento real.
+
+---
+
+# Evaluación de rendimiento *real*
+
+Una vez ya se ha implantado el cambio, desde la fase de Operación se envían
+a la Evaluación los **informes del rendimiento real** que está registrando el
+servicio. De nuevo, se analizarán los riesgos comparando estos datos con
+los requisitos del cliente, el rendimiento esperado y el modelo de rendimiento.
+
+Si todo marcha según lo esperado, se genera un **informe de evaluación final**
+y se da por concluido el proceso de Evaluación.
+
+---
+
+# Evaluación de rendimiento *real*
+
+Si, en cambio, se determina que el cambio está comportando riesgos inaceptables,
+se están incumpliendo los criterios de aceptación o el rendimiento no alcanza
+las expectativas iniciales, es **responsabilidad de la Evaluación alertar a la
+Gestión de Cambios** y hacerle llegar un **Informe Intermedio de Valoración**
+en los términos descritos en el apartado anterior.
+
+Este desenlace también cierra el proceso de Evaluación, ya que si la Gestión de
+Cambios desea corregir la situación, se generará una nueva RFCs conforme a los
+planes de retirada.
+
+---
+
+# Control del proceso
+
+.left-column[
+  #### El proceso de Evaluación puede medirse a través de los siguientes indicadores:
+]
+
+.right-column[
+
+-  Número de evaluaciones solicitadas para nuevos servicios o cambios
+en un periodo determinado.
+
+
+-  Número de evaluaciones entregadas en un periodo determinado.
+
+
+-  Número de evaluaciones que permanecen en la cola de tareas.
+]
+
+---
+
+# Control del proceso
+
+.left-column[
+  #### El proceso de Evaluación puede medirse a través de los siguientes indicadores:
+]
+.right-column[
+-  Tiempo medio de elaboración de una evaluación desde que ésta es solicitada
+hasta que se entrega.
+
+-  Desviación de las evaluaciones de rendimiento previsto respecto de las
+evaluaciones reales.
+]
+
+---
+
+# Referencia
+
+http://itilv3.osiatis.es/transicion_servicios_TI/evaluacion.php
+
+    </textarea>
+    <script src="//gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
