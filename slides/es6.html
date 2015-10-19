@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ECMAScript 6</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .red { color: #fa0000; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+        color: #000;
+      }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# ES6
+## (ECMAScript Harmony)
+
+*Manuel Pineda*
+[@pin3da_](https://twitter.com/pin3da_)
+[pin3da at github](https://github.com/pin3da)
+
+---
+
+# ECMAScript
+
+ECMAScript is a scripting language specification standardized by Ecma International
+in ECMA-262 and ISO/IEC 16262. Well-known implementations of the language,
+such as JavaScript, JScript and ActionScript are widely used for client-side
+scripting on the Web.
+
+
+### Standardization:
+
+#### "Things that are impossible just take longer." - Hixie
+
+---
+
+# History of ECMAScript
+
+- JavaScript was developed in 10 days in 1995 by Brendan Eich.
+
+--
+
+- ES1 was published in 1997.
+
+--
+
+- ES2 was published in 1998.
+
+--
+
+- ES3 was published in 1998:
+
+  Added regular expressions, better string handling,
+  new control statements, try/catch exception handling,
+  tighter definition of errors, formatting for numeric
+  output and other enhancements
+
+--
+
+- ES4 was published in no date: Abandoned.
+
+
+---
+
+# History of ECMAScript
+
+.red[Abandoned ?]
+
+--
+
+What doesn't kill you, makes you stronger.
+
+- ES5 was published in 2009:
+
+  Adds 'strict-mode', clarifies many ambiguities in the 3rd edition
+  specification, adds library support for JSON.
+
+--
+
+- ES5.1 was published in 2011:
+
+  This edition 5.1 of the ECMAScript Standard is fully
+  aligned with third edition of the international
+  standard ISO/IEC 16262:2011.
+
+
+---
+
+# History of ECMAScript
+
+- ES6 was published in 2015:
+
+  Covered in the next slides.
+
+- ES7, work in progess.
+
+---
+
+# ES6 external info
+
+- [Compatibility table](http://kangax.github.io/compat-table/es6/)
+
+- [Solar System of JS](https://shaunlebron.github.io/solar-system-of-js/#0)
+
+
+---
+
+# ES6 Tour
+
+## Strings
+
+- includes:
+
+```javascript
+
+let text = 'PereiraJS es genial!!';
+text.includes('Pereira');       // true
+text.includes('Manuel');        // false
+text.includes('Pereira', 5);    // false
+```
+
+---
+
+# ES6 Tour
+
+## Strings
+
+- endsWith:
+
+
+```javascript
+let text = 'PereiraJS es genial!!';
+text.endsWith('Pereira');       // false
+text.endsWith('genial!!');      // true
+text.endsWith('JS', 9);         // true
+```
+
+--
+
+- repeat:
+
+```javascript
+console.log("cool ".repeat(3));  // "cool cool "
+```
+
+---
+
+# ES6 Tour
+
+## Strings
+
+- Template Strings:
+
+```javascript
+// Template strings can be multiline
+console.log(`In ES6, you can have multiline
+ strings`);
+
+ // Interpolate expressions into a template string
+var name = "Pereira",
+    time = "today";
+
+console.log(`Hello ${name}, how are you ${time}?`);
+// Hello Pereira, how are you today?
+```
+---
+
+# ES6 Tour
+
+## Literals
+
+```javascript
+var mode = 0o755;   // Unix permission bits
+var bits = 0b101;   // better known as 5
+```
+--
+## Object Literal Shorthand:
+
+```javascript
+function longhand(bar, baz) {
+  return {foo: true, bar: bar, baz: baz};
+}
+
+function shorthand(bar, baz) {
+  return {foo: true, bar, baz};
+}
+```
+---
+
+# ES6 Tour
+
+## Destructuring (Array Pattern)
+
+```javascript
+var m = 3, d = 15, y = 2015;
+var [m, d, y] = [3, 15, 2015];
+[m, d, y] = getDateTriple();
+```
+
+--
+## Destructuring (Object Pattern)
+
+```javascript
+var today = {m: 3, d: 15, y: 2015};
+var {m: month, d: day} = today;
+console.log(month, day);    // 3 15
+```
+// Too much beautiful to write protocols.
+
+
+---
+
+# ES6 Tour
+
+## Block Scope
+
+```javascript
+for (var i = 0; i < 3; i++) {
+  let j = i * i;
+  console.log(j);   // Works
+}
+console.log(i);     // 3
+console.log(j);     // Fails
+
+// also const, class, function in block
+```
+---
+
+# ES6 Tour
+
+## Arrow function
+
+```javascript
+// Single parameter shorthand
+let square = x => x * x;
+console.log(square(4));     // 16
+
+// 0 or n > 1 parameters case
+let empty = () => undefined;
+let add = (a, b) => a + b;
+```
+---
+
+# ES6 Tour
+
+## Arrow function
+
+```javascript
+// The classic mistake...
+Car.prototype.start = function () {
+  setTimeout(function () {
+    this.startDriving();    // Wrong this!
+  }, 1000);
+};
+
+// Much better than using ES5 .bind!
+Car.prototype.start = function () {
+  setTimeout(() => this.startDriving(), 1000);
+};
+```
+---
+
+# ES6 Tour
+
+To be continued...
+
+---
+
+# ES6 in nodejs
+
+https://nodejs.org/en/docs/es6/
+
+No --harmony needed
+
+- let
+- const
+- Map / WeakMap
+- Set / WeakSet
+- Typed arrays
+- Generators
+- Binary and Octal literals
+- Object literal extensions (shorthand properties and methods)
+- Promises
+- New String methods
+- Symbols
+- Template strings
+- Arrow Functions
+
+---
+
+# ES6 in nodejs
+
+## Which ES6 features are in progress?
+
+```sh
+node --v8-options | grep "in progress"
+```
+---
+
+# Learn some ES6
+
+
+## Let's count to 6.
+
+```sh
+npm install -g count-to-6
+```
+
+https://github.com/domenic/count-to-6
+
+
+---
+
+# Thanks
+
+    </textarea>
+    <script src="//gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
