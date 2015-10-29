@@ -291,6 +291,23 @@ Car.prototype.start = function () {
   setTimeout(() => this.startDriving(), 1000);
 };
 ```
+
+---
+
+# ES6 Tour
+
+## Arrow function
+
+```javascript
+function foo() {
+   setTimeout( () => {
+      console.log("args:", arguments);
+   },100);
+}
+
+foo( 2, 4, 6, 8 );
+// args: [2, 4, 6, 8]
+```
 ---
 
 # ES6 Tour
