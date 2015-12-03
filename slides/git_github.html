@@ -29,78 +29,78 @@ class: center, middle
 
 ---
 
-# Problema :
+# Problem :
 
-## ¿ Cómo escribir código colaborativamente ?
+## How to write code collaboratively?
 
 --
 
-#### Malas soluciones (Antes):
+#### Bad Ideas (before):
 
-- Reuniones presenciales.
-- Enviar código por correo electrónico.
-- Esperar a que los demás terminen su trabajo.
+- Meetings.
+- Send your code (emails, usb, etc).
+- Wait for others finish their work.
 
-#### Desventajas :
+#### Disadvantages:
 
-- Desarrollo síncrono.
-- Es muy propenso a bugs
+- synchronous development.
+- error prone.
 
 ---
 
 
-## ¿ Cómo administrar mis proyectos ?
+## How to manage my proyects ?
 
-Por ejemplo, agregar una nueva funcionalidad a un proyecto
-estable.
+For example, adding a new functionality to an stable project.
 
 --
 
-#### Malas soluciones (Antes):
+#### Bad Ideas (before):
 
-- Crear copias del proyecto por fechas.
+- Make a copy of the proyect identified by date.
 
-#### Desventajas :
+#### Disadvantages :
 
-- Se pueden tener 'versiones' muy lejanas entre sí y perder mucho trabajo.
-- Ocupa mucho espacio (y tiempo).
+- You can have 'versions' far apart and lose a lot of work.
+- It occupies much space (and time).
 
 ---
 
-# Solución :
+# Solution :
 
-### Sistema de control de versiones
+### Version control sistem.
 
-Es un sistema para administrar proyectos basado en los cambios que se han realizado.
 
-Generalmente se utiliza algún tipo de marca, para volver a estados anteriores.
+Is any kind of practice that tracks and provides control over changes to source code.
 
-#### Ventajas
+Some sort of mark is usually used to return to previous states.
 
-Trabajo en paralelo por parte del equipo.
-Trabajo de manera asíncrona.
+#### Advantages
+
+- Parallel task realization.
+- Asynchronous work.
 
 #### Ejemplos:
 
-- Subversion : Centralizado.
-- Git        : Distribuido.
+- Subversion : Centralized.
+- Git        : Distributed.
 
 ---
 
 # Git : "cool kids" version control system.
 
-- Distribuido.
+- Distributed.
 - Open Source.
-- Fácil de usar.
-- Maneja grandes proyectos.
-- Eficiente y rápido.
-- Representa el proyecto como un DAG basado en los commits.
+- Easy to use.
+- Handles large porjects.
+- Efficient and fast.
+- Represents the project as a DAG based on commits.
 
 ![Work flow and marks](./images/git1.png)
 
 ---
 
-# ¿ Quién usa Git ?
+# Who uses Git ?
 
 --
 #### Linux Kernel.
@@ -119,7 +119,7 @@ Trabajo de manera asíncrona.
 
 ---
 
-# Comandos Básicos : Primer repositorio git.
+# Basic commands : First git repository.
 
 ```bash
 $ git init
@@ -127,77 +127,99 @@ $ vim test.html
 $ git status
 $ git add test.html
 $ git status
-$ git commit -m "Primer commit"
+$ git commit -m "Inital commit"
 $ git log
 ```
 
-Agregando algo :
+Adding something :
+
 ```bash
 $ vim test.html
 $ git add test.html
-$ git commit -m "Segundo commit"
+$ git commit -m "Second commit"
 ```
 
 
-Arreglando el daño :
+Fixing the bug:
+
 ```bash
 $ git log
 $ git reset <####>
 ```
+
+---
+
+# Config your git.
+
+```bash
+git config --global user.name "Manuel Pineda"
+git config --global user.email "manuel.felipe.pineda@gmail.com"
+```
+
 ---
 
 # Github : Social Coding.
 
-*Repositorio web de Git.*
+*Where software is built*
 
-*"Trabajar juntos : *
-*Envía pull request, sigue amigos, y observa código"*
+GitHub is a collaboration platform built on top of a distributed version control system called Git.
 
-- Ayuda a crear comunidades.
-- Aprendizaje autónomo.
+<img src="./images/labtocat.png" width="50%">
 
 ---
 
-## Características :
+## Caracteristics:
 
-- #### Estructura diseñada para aportar.
+- #### Designed to contribute.
 
-  - Estructura jerárquica de revisión
+  - Hierarchical structure review
 
 ![github rules](./images/git2.png)
 
 
 ---
 
-## Características :
+## Caracteristics:
 
-- #### Estructura diseñada para aportar.
+- #### Designed to contribute.
 
-  - Construcción de código basado en propuestas (pull request)
+  - Code construction based on proposals (pull request)
   - Git notes.
-  - Administración de tareas.
-  - Segumiento de bugs.
+  - Task management.
+  - Issue tracking.
 
-- Wiki.
-- Gratis para OpenSource.
-- Es el mayor hosting de código en el mundo.
-- 3.4 millones de usuarios en 2014.
-- Web editor
+  - Wiki.
+  - Free for open source.
+  - The largest host of source code in the world.
+  - GitHub reports having over 11 million users and over 29.4 million repositories.
+  - Web editor
+
+
+* https://github.com/about/press
 
 ---
 
-## Grandes comunidades en Git:
+## Big communities in github:
 
 - NodeJS.
 - ZeroMQ.
 - Express.
-- Nodejitsu
-- PereiraJS !!
+- PereiraJS.
 
 ---
 
-# Ejemplo: Haciendo un pull request para PereiraJS.
----
+# Example : Make a pull request for PereiraJS.
+
+
+<img src="./images/daftpunktocat-thomas.gif" width="40%">
+<img src="./images/daftpunktocat-guy.gif" width="40%">
+
+- Create an issue.
+- Create a branch.
+- Create a PR.
+- Merge.
+
+
     </textarea>
     <script src="//gnab.github.io/remark/downloads/remark-latest.min.js">
     </script>
