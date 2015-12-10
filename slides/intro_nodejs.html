@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Node JS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .red { color: #fa0000; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+        color: #000;
+      }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Node.js
+
+*Manuel Pineda*
+[@pin3da_](https://twitter.com/pin3da_)
+[pin3da at github](https://github.com/pin3da)
+
+---
+
+# Why NodeJS ?
+
+How long it takes ?
+
+--
+
+## I/O lattency
+
+Memory | Clock cycles
+------ | -------------
+L1     | 3 cycles
+L2     | 1 cycles
+RAM    | 250 cycles
+Disk   | 41.000.000
+Network| 240.000.000
+
+---
+
+# Why NodeJS ?
+
+Synchronous models does not scale with threads:
+
+They spend a lot of time waiting for answers.
+---
+
+# Why NodeJS ?
+
+### Scale with event loop:
+
+What if we can do "other things" while we wait.
+
+--
+
+## How does NodeJS work ?
+
+
+<img src="./images/event_loop.jpg" width="65%">
+---
+
+# Why NodeJS ?
+
+Node is built on Chrome's V8 JavaScript engine.
+Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.
+
+<img src="./images/node_v8.png" width="80%">
+
+---
+
+# Why NodeJS ?
+
+### NPM: Node package manager. .red[*]
+
+--
+
+- 214,266 total packages
+- 136,831,517 downloads in the last day
+- 743,622,017 downloads in the last week
+- 3,058,781,896 downloads in the last month
+
+.footnote[.red.bold[*] Taken from https://www.npmjs.com/ december of 2015]
+---
+
+# Why NodeJS ?
+
+### People: One of the bigest open source communities.
+
+<img src="./images/node_community.png" width="100%">
+
+---
+
+# NodeJS doc.
+
+### NodeJS Core (Some modules)
+
+--
+
+- Buffer
+- C/C++ Addons
+- Cluster
+- Crypto
+- Events
+- File System
+- HTTP
+- Stream
+
+NodeJS is designed to build scalable network applications.
+
+---
+
+# Little example
+
+## HTTP server
+
+```javascript
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = 1337;
+
+http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello World\n');
+}).listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+```
+
+---
+
+# Cool stuff around NodeJS
+
+- Express JS
+- WebSockets
+- Bindings from all languages and libraries (as ZMQ)
+- WebTorrent
+- Browserify
+
+---
+
+# Another example.
+
+## Let's make a chat (?)
+
+---
+
+# Homework
+
+### Install NodeJS (and npm)
+
+### Do the workshops
+
+```sh
+npm install -g learnyounode
+npm install -g stream-adventure
+```
+
+
+---
+
+class: center, middle
+
+# Thanks
+
+    </textarea>
+    <script src="//gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
