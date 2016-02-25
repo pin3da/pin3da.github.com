@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>p2p + webtorrent</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(//fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(//fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .red { color: #fa0000; }
+      .green { color: #008000; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+        color: #000;
+      }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# p2p + webtorrent
+
+*Manuel Pineda*
+[@pin3da_](https://twitter.com/pin3da_)
+[pin3da at github](https://github.com/pin3da)
+
+---
+# How the web works today ?
+
+Large companies control the data, data that we want to download.
+
+```
++---------+
+|         |
+| Server  | --> client
+|         |
++---------+
+```
+
+What happen if the data becomes popular ?
+
+--
+
+```
++---------+  -----> client
+|         | /
+| Server  | --> client
+|         | \
+|         |  ------>  client
++---------+
+```
+
+What happen if the data becomes *extremely* popular ?
+
+--
+
+.red[Booooom !]
+
+---
+
+# Problems of the web
+
+- It is very expensive to "scale"
+
+- Information is owned by the companies, not by the authors
+
+- What if the site is suddenly shut down ? (Egypt 2011 - 2012)
+
+- The content may appear/disappear at *any* moment, even in the past o.O
+
+- The content of a link may be changed at any moment.
+
+- does not work offline.
+
+---
+
+# Solution
+
+- how to build systems that nobody can own ?
+- how to build systems that can't be shut down ?
+- how to build a web that scales ?
+
+--
+
+## P2P !!
+
+Decentralized pros:
+
+- trust
+- data distribution
+- hosting
+- anonymity
+
+---
+
+# Bittorrent
+
+What if clients just share data between each other instead ?
+
+--
+### Inverse scaling:
+.red[the more people get the data, the better it works]
+
+
+```
++----------+                 +----------+
+|          |                 |          +--------+
+|   peer   +-----------------+  peer    |        |
+|          |                 |          |        |
++----+-----+                 +-+--------+        |
+     |                         |            +----+----+
+     |                         |            |         |
+     |               +---------+-+    +-----+  peer   |
+ +---+-----+         |           |    |     |         |
+ |         |         |   peer    +----+     +---------+
+ |  peer   +---------+           |
+ |         |         +-----------+
+ +---------+
+
+```
+---
+
+# Bittorrent
+
+Split the file into small pieces and *hash* each of them.
+
+If we get the pice number N, we verify it using the hash number N.
+
+.green[```
+    piece #1 -> hash of #1
+    piece #2 -> hash of #2
+    ...
+    piece #N -> hash of #N
+```]
+
+--
+
+How to store the list of hashes (torrent file) ?
+
+Hash them again ! (:
+
+That is called infohash or magnet link
+
+---
+
+# Bittorrent
+
+How to find the peers that share the file ?
+
+--
+
+DHT to the rescue.
+
+```
+key : info-hash
+value: list of <ip-address:port>
+```
+
+Bittorrent DHT mantains a daily average of 10.000.000 of peers. .red[*]
+
+One of the 'Data structures of revolution', also used by
+.red[ipfs.]
+
+.footnote[.red.bold[*] https://dsn.tm.kit.edu/english/2936.php]
+
+---
+
+# Nodejs, streaming  and bittorrent
+
+
+## M̶o̶v̶i̶e̶  Demo Time !
+
+Netflix now accounts more almost 37% of downstream Internet traffic in North America during peak evening hours. .red[*]
+
+--
+
+What if somebody makes a distributed netflix ?
+
+--
+
+```
+npm install -g peerflix
+```
+
+```
+peerflix "magnet:?xt=urn:btih:ef330b39f4801d25b4245212e75a38634bfc856e" --vlc
+```
+
+
+.footnote[.red.bold[*] http://time.com/3901378/netflix-internet-traffic/]
+---
+
+# Nodejs, streaming  and bittorrent
+
+- streaming bittorrent means fetching pieces based on demand.
+
+- concurrent fetch of most critical pieces.
+
+---
+
+# Nodejs, streaming  and bittorrent
+
+- What if I read a streaming as a regular file ?
+
+--
+
+```sh
+npm install -g torrent-mount
+```
+
+(Optional demo)
+```bash
+torrent-mount debian-8.3.0-amd64-CD-1.iso.torrent
+```
+
+---
+
+# Nodejs, streaming, bittorrent and the browser:
+
+.red[# web torrent!!!]
+
+"It's written completely in JavaScript – the language of the web – and
+uses WebRTC for true peer-to-peer transport. No browser plugins,
+extensions, or installation is required."
+
+---
+# Web torrent
+
+"Imagine a peer-to-peer YouTube where viewers help to host the
+site's content. By making BitTorrent easier to use, we can get
+more people to participate and take the first steps to
+re-decentralizing the Internet."
+
+```HTML
+<script src="//cdn.jsdelivr.net/webtorrent/latest/webtorrent.min.js"> </script>
+<script>
+var client = new WebTorrent()
+
+var torrentId = 'magnet:?xt=urn:btih:6a9759bffd5c0af65319979fb7832189f4f3c35d'
+
+client.add(torrentId, function (torrent) {
+  // Torrents can contain many files. Let's use the first.
+  var file = torrent.files[0]
+
+  // Display the file by adding it to the DOM. Supports video, audio, image, etc. files
+  file.appendTo('body')
+})
+</script>
+```
+
+---
+
+# One more demo
+
+Share any file using webtorrent... in real time ! \o/
+
+---
+    </textarea>
+    <script src="//gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
