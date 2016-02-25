@@ -62,8 +62,8 @@ How long it takes ?
 
 Memory | Clock cycles
 ------ | -------------
-L1     | 3 cycles
-L2     | 1 cycles
+L1     | 1 cycles
+L2     | 3 cycles
 RAM    | 250 cycles
 Disk   | 41.000.000
 Network| 240.000.000
@@ -158,6 +158,41 @@ http.createServer((req, res) => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
+```
+---
+
+# Another example
+
+## Export your modules
+
+```javascript
+module.exports = function(line) {
+  return line.toUpperCase();
+}
+```
+
+## Require modules
+
+```javascript
+var cap = require('./my_module');
+console.log(cap('Node js is so cool !'));
+// 'NODE JS IS SO COOL !'
+```
+---
+
+# Another example
+
+## Import modules from npm
+
+```sh
+npm install gamma
+```
+Optionally, you can add the --save flag if you already have a package.json
+
+```javascript
+var gamma = require('gamma')
+gamma(5)
+// 23.999999999999996
 ```
 
 ---
