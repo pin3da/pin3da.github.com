@@ -1,52 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>MP</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Personal web page">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Manuel Pineda</title>
+
+    <link href='//fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link href='/assets/css/style.css' rel='stylesheet'>
   </head>
 
   <body>
-    <section id="home" name="home"></section>
-    <div class="row">
-      <h1>Manuel Pineda</h1>
-      <h3>Programming contest lover, free software enthusiast</h3>
-    </div>
+    <div class="container">
+      <header>
+        <h1>Manuel Pineda</h1>
+        <h3>Programming contest lover, free software enthusiast</h3>
+        <div class="links">
+          <span>
+            <a href="/">home</a>
+            <a href="/#about">about</a>
+            <a href="/#projects">projects</a>
+            <a href="/slides/index.html">slides</a>
+            <a href="/#contact">contact</a>
+          </span>
+        </div>
+      </header>
 
-    <section id="about" name="about"></section>
-    <div>
-      <h3>ABOUT ME</h3>
-      <div>
-        <p>I like to read about code, society and other amazing histories.</p>
-        <p>I love programming and everything related with algorithms, data structures, etc.</p>
-        <p>Recently I've been working with nodejs and it is awesome.</p>
-        <p>Feel free to get in touch with me to talk about this topics.</p>
+      <div class="wrapper">
+        <section id="about" name="about">
+          <div>
+            <h3>ABOUT ME</h3>
+            <div>
+              <p>I like to read about code, society and other amazing histories.</p>
+              <p>I love programming and everything related with algorithms, data structures, etc.</p>
+              <p>Recently I've been working with nodejs and it is awesome.</p>
+              <p>Feel free to get in touch with me to talk about this topics.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" name="projects">
+          <div>
+            <h3>SOME PROJECTS</h3>
+            <p><a href="http://pereirajs.org/"> Group of javascript users in Pereira</a></p>
+            <p><a href="https://github.com/pin3da/gplib"> GPlib : C++ Gaussian Process library</a></p>
+            <p><a href="https://github.com/pin3da/Programming-contest"> Solutions to programming contest & training </a></p>
+            <p><a href="http://pin3da.github.io/slides/"> Slides, presentations </a></p>
+          </div>
+        </section>
+        <section id="contact" name="contact"></section>
+        <div>
+          <h3>CONTACT ME</h3>
+          <p><a href="https://twitter.com/pin3da_"> @pin3da_</a> on twitter</p>
+          <p><a href="https://github.com/pin3da"> @pin3da </a> on github</p>
+        </div>
       </div>
     </div>
 
-    <section id="portfolio" name="portfolio"></section>
-    <div>
-      <h3>SOME PROJECTS</h3>
-      <p><a href="http://pereirajs.org/"> Group of javascript users in Pereira</a></p>
-      <p><a href="https://github.com/pin3da/gplib"> GPlib : C++ Gaussian Process library</a></p>
-      <p><a href="https://github.com/pin3da/Programming-contest"> Solutions to programming contest & training </a></p>
-      <p><a href="http://pin3da.github.io/slides/"> Slides, presentations </a></p>
-    </div>
-
-    <section id="contact" name="contact"></section>
-    <div>
-      <h3>CONTACT ME</h3>
-      <p><a href="https://twitter.com/pin3da_"> @pin3da_</a> on twitter</p>
-      <p><a href="https://github.com/pin3da"> @pin3da </a> on github</p>
-    </div>
-
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-55674965-1', 'auto');
-      ga('send', 'pageview');
+ga('create', 'UA-55674965-1', 'auto');
+ga('send', 'pageview');
     </script>
   </body>
 </html>
