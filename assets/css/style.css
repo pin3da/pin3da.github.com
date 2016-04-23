@@ -1,3 +1,7 @@
+html, body, header, main {
+  height: 100%;
+}
+
 header {
   font-family: 'Bad Script', Franklin Gothic Book, Arial, sans-serif;
   letter-spacing: .15em;
@@ -6,12 +10,43 @@ header {
   font-size: 11px; text-align: center;
 }
 
-footer {
+body {
+  background: #f4f4f4;
+  font-family: Lora, Georgia, Baskerville, serif;
+  color: #505050;
+  margin: 0px;
+  padding: 0px;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.footer {
   font-family: 'Bad Script', Franklin Gothic Book, Arial, sans-serif;
   letter-spacing: .15em;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 11px; text-align: center;
+}
+
+.page {
+  height: 100%;
+  padding: 108px;
+  background: #fff;
+}
+
+.page-contact {
+  height: 50%;
+  padding: 54px;
+  background: #fff;
+}
+
+.page-footer{
+  height: 50%;
+  padding: 54px;
 }
 
 .links {
@@ -36,30 +71,13 @@ header a:hover {
   border-bottom: 1px solid #9326C0;
 }
 
-footer a {
+.footer a {
   text-decoration: none; color: #505050;
 }
 
-footer a:hover {
+.footer a:hover {
   color: #9326C0;
   border-bottom: 1px solid #9326C0;
-}
-
-.wrapper {
-  padding: 108px;
-  background: #fff;
-}
-
-@media only screen and (max-device-width: 480px) {
-  .wrapper {
-    padding: 30px;
-  }
-  header {
-    padding: 30px;
-  }
-  footer {
-    padding: 30px;
-  }
 }
 
 a {
@@ -74,20 +92,16 @@ a:hover {
   border-color: #9326C0;
 }
 
-body {
-  background: #f4f4f4;
-  font-family: Lora, Georgia, Baskerville, serif;
-  color: #505050;
-  margin: 0px;
-  padding: 0px;
-}
-
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 50px 0;
-}
-
 .centered-img {
   width: 100px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  header {
+    padding: 0;
+  }
+
+  main, .page, .footer, .page-contact {
+    padding: 10px;
+  }
 }

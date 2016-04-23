@@ -5,17 +5,13 @@
     <meta name="description" content="Personal web page">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Manuel Pineda</title>
-
     <link href='//fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-
-
     <link rel="shortcut icon" href="/assets/favicon.png">
     <link href='/assets/css/style.css' rel='stylesheet'>
   </head>
 
   <body>
-    <div class="container">
       <header>
         <h1>Manuel Pineda</h1>
         <img class="centered-img" src="assets/img/me-circle.png">
@@ -30,53 +26,38 @@
           </span>
         </div>
       </header>
-
-      <div class="wrapper">
-        <section id="about" name="about">
-          <div>
+      <main>
+        <section id="about" name="about" class="page">
             <h3>ABOUT ME</h3>
-            <div>
-              <p>I like to read about code, society and other amazing histories.</p>
-              <p>I love programming and everything related with algorithms, data structures, etc.</p>
-              <p>Recently I've been working with nodejs and it is awesome.</p>
-            </div>
-          </div>
+            <p>I like to read about code, society and other amazing histories.</p>
+            <p>I love programming and everything related with algorithms, data structures, etc.</p>
+            <p>Recently I've been working with nodejs and it is awesome.</p>
         </section>
-
-        <section id="projects" name="projects">
-          <div>
+        <section id="projects" name="projects" class="page">
             <h3>SOME PROJECTS</h3>
             <p><a href="//pereirajs.org/"> Group of javascript users in Pereira</a></p>
             <p><a href="//github.com/pin3da/gplib"> GPlib : C++ Gaussian Process library</a></p>
             <p><a href="//github.com/pin3da/Programming-contest"> Solutions to programming contest & training </a></p>
-          </div>
         </section>
-        <section id="contact" name="contact"></section>
-        <div>
+        <section id="contact" name="contact" class="page-contact">
           <h3>CONTACT ME</h3>
           <p>Feel free to get in touch with me. You can email me at
             <a href="mailto:manuel.felipe.pineda@gmail.com">manuel.felipe.pineda@gmail.com</a>
             or send me a somke signal <a href="https://twitter.com/pin3da_"> on twitter</a>
           </p>
-        </div>
-      </div>
+        </section>
+        <section class="page-footer footer">
+          <h2>Follow</h2>
+          <div class="links">
+            <span>
+              <a href="https://twitter.com/pin3da_">Twitter</a>
+              <a href="https://github.com/pin3da">GitHub</a>
+              <a href="https://gitlab.com/pin3da">Gitlab</a>
+            </span>
+          </div>
+        </section>
 
-      <footer>
-        <div>
-          <section>
-            <h2>Follow</h2>
-            <div class="links">
-              <span>
-                <a href="https://twitter.com/pin3da_">Twitter</a>
-                <a href="https://github.com/pin3da">GitHub</a>
-                <a href="https://gitlab.com/pin3da">Gitlab</a>
-              </span>
-            </div>
-          </section>
-        </div>
-      </footer>
-
-    </div>
+      </main>
 
     <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
