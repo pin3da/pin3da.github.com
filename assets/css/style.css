@@ -6,6 +6,14 @@ header {
   font-size: 11px; text-align: center;
 }
 
+footer {
+  font-family: 'Bad Script', Franklin Gothic Book, Arial, sans-serif;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 11px; text-align: center;
+}
+
 .links {
   display: inline-block;
   height: 120px;
@@ -24,8 +32,17 @@ header a {
 }
 
 header a:hover {
-  color: #357efc;
-  border-bottom: 1px solid #357efc;
+  color: #9326C0;
+  border-bottom: 1px solid #9326C0;
+}
+
+footer a {
+  text-decoration: none; color: #505050;
+}
+
+footer a:hover {
+  color: #9326C0;
+  border-bottom: 1px solid #9326C0;
 }
 
 .wrapper {
@@ -40,6 +57,21 @@ header a:hover {
   header {
     padding: 30px;
   }
+  footer {
+    padding: 30px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #357efc;
+  border-bottom: 1px solid #ECECEC;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #9326C0;
+  border-color: #9326C0;
 }
 
 body {
@@ -54,4 +86,8 @@ body {
   max-width: 1000px;
   margin: 0 auto;
   padding: 50px 0;
+}
+
+.centered-img {
+  width: 100px;
 }
