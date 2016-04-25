@@ -1,12 +1,4 @@
-header {
-  font-family: 'Bad Script', Franklin Gothic Book, Arial, sans-serif;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 11px; text-align: center;
-}
-
-footer {
+header, footer {
   font-family: 'Bad Script', Franklin Gothic Book, Arial, sans-serif;
   letter-spacing: .15em;
   text-transform: uppercase;
@@ -27,20 +19,11 @@ footer {
   padding: 10px 0; margin: 0 8px; border: none;
 }
 
-header a {
+header a, footer a {
   text-decoration: none; color: #505050;
 }
 
-header a:hover {
-  color: #9326C0;
-  border-bottom: 1px solid #9326C0;
-}
-
-footer a {
-  text-decoration: none; color: #505050;
-}
-
-footer a:hover {
+header a:hover, footer a:hover {
   color: #9326C0;
   border-bottom: 1px solid #9326C0;
 }
@@ -50,22 +33,10 @@ footer a:hover {
   background: #fff;
 }
 
-@media only screen and (max-device-width: 480px) {
-  .wrapper {
-    padding: 30px;
-  }
-  header {
-    padding: 30px;
-  }
-  footer {
-    padding: 30px;
-  }
-}
-
 a {
   text-decoration: none;
-  color: #357efc;
-  border-bottom: 1px solid #ECECEC;
+  color: #505050;
+  border-bottom: 1px solid #9326C0;
   transition: color 0.2s;
 }
 
@@ -82,6 +53,10 @@ body {
   padding: 0px;
 }
 
+.title {
+  color: #9326C0;
+}
+
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -90,4 +65,10 @@ body {
 
 .centered-img {
   width: 100px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  header, footer, .wrapper {
+    padding: 30px;
+  }
 }
