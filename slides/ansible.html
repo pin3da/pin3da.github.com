@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction to DevOps and Ansible</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Droid Serif';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 1.6em; }
+      .remark-slide-content h3 { font-size: 1.2em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #F00; }
+      .subt { color: rgb(9, 150, 200); }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(9, 150, 200);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2, .inverse h3 {
+        color: #f3f3f3;
+        /* line-height: 0.8em; */
+      }
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle, inverse
+
+# Introducción a DevOps
+#### [DevOps y automatización de deploys usando Ansible]
+## [Manuel Pineda - [pin3da](//pin3da.github.io)]
+
+---
+
+# .subt[Agenda]
+
+- ## ¿ Qué es DevOps ?
+- ## ¿ Qué es Ansible ?
+  - ## instalación
+  - ## inventorios, variables
+  - ## playbooks
+  - ## handlers
+
+---
+
+# .subt[¿ Qué es DevOps ?]
+
+## .subt[Según wikipedia]
+
+## Es una práctica de ingeniería de software que tiene como objetivo unificar el desarrollo de software (Dev) y la operación del software (Ops).
+
+## Su principal característica es defender enérgicamente la automatización y el monitoreo en todos los pasos de la construcción del software.
+
+---
+
+# .subt[Motivación]
+
+## DevOps apunta a ciclos de desarrollo más cortos, mayor frecuencia de implementación, lanzamientos más confiables, en estrecha alineación con los objetivos comerciales.
+
+--
+
+## Se plantea que la misma persona pueda desarrollar, correr las pruebas y hacer deploy del software mediante el uso de herramientas automatizadas.
+
+---
+
+# .subt[Componentes]
+
+- ### .subt[Código]: desarrollo y revisión de código, herramientas de administración de código fuente, fusión de código
+
+--
+
+- ### .subt[Construcción]: herramientas de integración continua, estado de compilación y pruebas unitarias *
+
+--
+
+- ### .subt[Prueba]: herramientas de prueba continuas que brindan retroalimentación sobre los riesgos comerciales *
+
+--
+
+- ### .subt[Empaquetamiento]: repositorio de artefactos, distribución previa a la implementación de la aplicación
+
+
+*De esto hablará Carlos en la siguiente charla
+
+---
+
+# .subt[Componentes]
+
+- ### .subt[Infraestructura]:  configuración y gestión de la infraestructura, Infraestructura como código*
+
+--
+
+- ### .subt[Monitoreo]: monitoreo del rendimiento de las aplicaciones, logs, etc **
+
+
+*de esto vamos a hablar en la segunda parte de la charla
+
+**de esto ya hablamos en la charla de StatsD
+---
+
+# .subt[Contra]
+
+## El entrenamiento es una tarea agotadora que consume mucho tiempo ya que son muchas herramientas y la mayoría de las personas no quieren cambiar.
+
+---
+
+class: center, middle
+
+# .subt[Preguntas obligatorias de DevOps]
+
+---
+
+class: center, middle, inverse
+
+# .subt[Ansible]
+
+http://docs.ansible.com/
+
+---
+
+# .subt[Meta]
+
+### Cualquier persona puede hacer deploy de manera automática para cualquier número de computadores.
+
+### Eliminar tareas repetitivas
+
+### Ahorrar tiempo y ser más productivos (:
+
+---
+
+# .subt[Notas]
+
+### Está escrito en python.
+
+### Sólo se necesita tener instalado python y un cliente ssh en la máquina destino.
+
+### El deploy puede ser remoto (usar cualquier otro pc que tenga ansible instalado)
+
+### .subt[¡El deploy debe ser idempotente!]
+
+---
+
+# .subt[Instalación]
+
+```bash
+sudo pip install ansible
+```
+
+o para la última version:
+
+```bash
+pip install git+https://github.com/ansible/ansible.git@devel
+```
+
+Existen muchos otros métodos pero este es el más efectivo.
+
+
+Después de esto simplemente llamamos a ansible desde la consola (por ejemplo):
+
+```bash
+ansible
+ansible -i inventario.hosts deploy.yaml
+```
+
+---
+
+# .subt[Configuracion]
+
+archivo `ansible.cfg`
+
+```bash
+[ssh_connection]
+ssh_args = -F ssh_config
+```
+
+--
+
+archivo `ssh_config`
+
+```bash
+# Defaults
+Host *
+	User ubuntu
+	PasswordAuthentication no
+
+Host host1
+	HostName 123.456.789.123
+Host host2
+	HostName 123.456.789.666
+```
+
+---
+
+# .subt[Inventorios]
+
+### Se usan para determinar en que computadores vamos a realizar el deploy y para definir las variables entre diferentes grupos de computadores.
+
+```bash
+[atlanta]
+host1
+host2
+
+[atlanta:vars]
+ntp_server=ntp.atlanta.example.com
+proxy=proxy.atlanta.example.com
+```
+
+### .subt[**Pro tip**] para deploys automáticos
+
+```bash
+[atlanta]
+host ansible_host=localhost
+```
+
+---
+
+# .subt[Inventorios]
+
+### Los inventorios por defecto se toman de `/etc/ansible/hosts`, pero un procedimiento recomendado, es definir un inventario por proyecto y agregarlo explícitamente cuando usemos ansible
+
+```bash
+ansible -i custom.hosts
+```
+
+---
+
+# .subt[Playbooks]
+
+### Describen exactamente que se va a realizar en nuestros computadores destino (los que hay en el inventario).
+
+### Los playbooks están diseñados para ser leídos por humanos. Existen varias maneras en las que los playbooks pueden ser organizados, y en cómo se incluyen otros archivos.
+
+### Lo mejor para ser productivo con ansible, es conocer los [modulos existentes](http://docs.ansible.com/ansible/latest/modules_by_category.html), entre ellos tenemos:
+
+- crypto
+- gestores de paquetes
+- módulos para DB
+- módulos de archivos
+
+---
+
+# .subt[Playbooks]
+
+### .subt[Ejemplo]
+
+```bash
+---
+- hosts: all
+  become: no
+
+  tasks:
+    - include_tasks: tasks/install-dependencies.yml
+
+    - name: Update apt-cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      notify: apt updated
+
+    - name: restart some service
+      listen: apt updated
+      service:
+        name: httpd
+        state: restarted
+      become: yes
+
+- import_playbook: tasks/config-monitoring-tasks.yml
+- import_playbook: tasks/config-logging-task.yml
+```
+
+---
+
+# .subt[Playbooks]
+
+### .subt[Condicionales]
+
+Basta con usar el keyword `when`:
+
+```bash
+tasks:
+  - name: "shut down Debian flavored systems"
+    command: /sbin/shutdown -t now
+    when: ansible_os_family == "Debian"
+    # note that Ansible facts and vars like ansible_os_family can be used
+    # directly in conditionals without double curly braces
+```
+
+---
+
+# .subt[Playbooks]
+
+### .subt[Loops]
+
+```bash
+- name: add several users
+  user:
+    name: "my-user-{{ item }}"
+    state: present
+    groups: "wheel"
+  with_items:
+     - testuser1
+     - testuser2
+```
+
+### Aquí vale la pena resaltar la utilidad del sistema de templates que usa Ansible.
+
+---
+
+# .subt[Playbooks]
+
+### .subt[Loops]
+
+```bash
+- name: copy config
+  template:
+    src: '../templates/config-{{ item }}.j2'
+    dest: '/etc/path-to-config-{{ item }}.conf'
+    mode: a+r
+  with_items: "{{ custom_modules |default([]) }}"
+```
+
+En este caso vamos a copiar un archivo de configuracion para todos los módulos que estén definidos
+en la variable `custom_modules`, dentro del archivo de hosts deberíamos tener algo como:
+
+```bash
+custom_modules="['module1', 'super-module']"
+```
+
+También lo podemos modificar desde el llamado para definir cualquer subconjunto de módulos:
+
+```bash
+ansible-playbook -i my-custom.hosts deploy.yml  --extra-vars "custom_modules=\"['super-module']\""
+```
+
+---
+
+# .subt[Handlers]
+
+## Podemos aprovechar el hecho de que los deploys deben ser idempotentes, y de que ansible puede detectar cuándo se hizo un cambio para ejecutar tareas sólo cuando sea necesario. Por ejemplo, reniciar servicios sólo cuando su configuración haya cambiado.
+
+---
+
+# .subt[Handlers]
+
+## Otro caso muy interesante es cuando varios procesos necesitan ejecutar la misma tarea despues de realizarse, con los handlers podemos evitar que dicha tarea sea ejecutada múltiples veces.
+
+```bash
+- name: template configuration file
+  template: src=template.j2 dest=/etc/foo.conf
+  notify:
+     - restart memcached
+     - restart apache
+```
+
+```bash
+handlers:
+    - name: restart memcached
+      service: name=memcached state=restarted
+    - name: restart apache
+      service: name=apache state=restarted
+```
+
+---
+
+# .subt[Demo (opcional)]
+
+
+---
+
+class: center, middle
+
+# .subt[¿ Preguntas ?]
+
+---
+
+class: center, middle, inverse
+
+# Gracias!
+Slides available at [pin3da.github.io/slides](//pin3da.github.io/slides/)
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
