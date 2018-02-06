@@ -252,8 +252,8 @@ Existen muchos otros métodos pero este es el más efectivo.
 Después de esto simplemente llamamos a ansible desde la consola (por ejemplo):
 
 ```bash
-ansible
-ansible -i inventario.hosts deploy.yaml
+ansible --version
+ansible-playbook -i inventario.hosts deploy.yaml
 ```
 
 ---
@@ -313,7 +313,7 @@ host ansible_host=localhost
 ### Los inventorios por defecto se toman de `/etc/ansible/hosts`, pero un procedimiento recomendado, es definir un inventario por proyecto y agregarlo explícitamente cuando usemos ansible
 
 ```bash
-ansible -i custom.hosts
+ansible-playbook -i custom.hosts deploy.yml
 ```
 
 ---
