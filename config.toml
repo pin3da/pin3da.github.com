@@ -1,3 +1,53 @@
-baseURL = "http://example.org/"
+baseURL = "https://pin3da.github.io"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Manuel Pineda"
+theme = "hermit"
+
+[author]
+    name = "Manuel Pineda"
+
+[blackfriday]
+    hrefTargetBlank = true
+
+[taxonomies]
+    tag = "tags"
+    category = "" # Categories are disabled by default.
+
+[params]
+    dateform        = "Jan 2, 2006"
+    dateformShort   = "Jan 2"
+    dateformNum     = "2006-01-02"
+    dateformNumTime = "2006-01-02 15:04 -0700"
+
+    themeColor = "#494f5c"  # Theme color in meta tags.
+    # homeSubtitle = "Software engineer with interest in distributed systems and open source. Twice ACM-ICPC World Finalist."
+    footerCopyright = ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+    gitUrl = "https://github.com/pin3da" # Prefix of link to the git commit detail page. GitInfo must be enabled.
+    justifyContent = false  # Set "text-align: justify" to .content, requires extended version of Hugo
+    # bgImg = ""  #  Homepage background-image URL
+
+    # Social Icons
+    # Check https://github.com/Track3/hermit#social-icons for more info.
+    [[params.social]]
+        name = "twitter"
+        url = "https://twitter.com/pin3da_"
+
+    [[params.social]]
+        name = "github"
+        url = "https://github.com/pin3da"
+
+    [[params.social]]
+        name = "gitlab"
+        url = "https://gitlab.com/pin3da"
+
+[menu]
+
+    [[menu.main]]
+        name = "About"
+        url = "/about/"
+        weight = 20
+
+    [[menu.main]]
+        name = "Posts"
+        url = "/posts/"
+        weight = 10
