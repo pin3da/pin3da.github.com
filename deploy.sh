@@ -7,7 +7,6 @@ rm -rf public
 mkdir public
 
 hugo
-hugo
 
 cd public
 git init
