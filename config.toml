@@ -2,6 +2,7 @@ baseURL = "https://pin3da.github.io"
 languageCode = "en-us"
 title = "Manuel Pineda"
 theme = "hermit"
+googleAnalytics = "UA-55674965-1"
 
 [author]
     name = "Manuel Pineda"
