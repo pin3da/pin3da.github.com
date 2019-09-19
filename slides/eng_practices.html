@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eng Practices</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+            body {
+        font-family: 'Droid Serif';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle, inverse
+
+# Code Review - Practicas de ingenieria 1/N
+## [Manuel Pineda - [pin3da](//pin3da.github.io)]
+
+---
+
+# Agenda
+
+- ### Importancia y objetivos
+- ### Terminologia
+- ### Perspectiva del revisor
+  - Que aspectos debo mirar?
+  - Como navegar en los cambios.
+  - Velocidad de un code review.
+  - Como escribir buenos comentarios.
+  - Como manejar las respuestas a los comentarios.
+
+- ### Perspectiva del autor
+  - Pre requisitos
+  - Commits pequenos.
+  - Commentario descriptivo.
+  - Como manejar los comentarios del revisor?
+
+---
+
+# Importancia (Definicion del problema)
+
+### **Entropia**:
+
+De acuerdo con la segunda ley de la termodinamica, en un sistema cerrado, la
+cantidad de desorden nunca decrece. La entropia es una medida de este desorden.
+
+### **Entropia en el software**:
+
+Es un proceso de degradacion natural e inevitable en nuestro codigo, que debe
+ser atacado continuamente pues *nunca decrece*.
+
+### **Por que ocurre?**:
+
+---
+
+<img src="./not-my-problem.png" alt="commit description" style="width:100%;">
+
+---
+
+# Importancia
+
+## **software entropy**:
+
+- ### "Not my problem"
+- ### Cambios en la logica de negocio
+- ### "Atajos"/"Hacks" para soluciones rapidas
+- ### Codigo no usado
+- ### Codigo duplicado
+- ### ...
+
+---
+
+# Importancia
+
+- ### Mejora la calidad del codigo al saber que va a ser revisado por alguien mas.
+- ### Ayuda a reducir la cantidad de errores en el codigo en una etapa inicial.
+- ### Ayuda a compartir el conocimiento entre las personas del equipo:
+  - Buenas Practicas
+  - Estilo de codigo
+  - Consistencia en las soluciones
+- ### Mejora la legibilidad del codigo.
+
+---
+
+# Objetivos
+
+### ✅ Mejorar la calidad del codigo con el tiempo, y evitar la degradacion.
+### ✅ Compartir conocimiento y hacer mentoria a otros miembros del equipo.
+### 🚫 Atrasar el trabajo de los demas miembros del equipo.
+### 🚫 Desmotivar a las personas a contribuir.
+
+---
+
+# Terminologia
+
+## CL, commit, revision, patch, pull request:
+
+Conjunto de cambios que son enviados para evaluacion, generalmente resuelven
+*un problema* y contiene todo lo necesario para ser probado y ejecutado.
+
+## Autor y revisor:
+
+--
+
+Los robots tambien pueden ser autores!
+
+<img src="./pl-bot.png" alt="commit description" style="width:100%;">
+
+---
+
+# Perspectiva del revisor
+
+## Que aspectos debo mirar?
+
+### Diseno
+
+Esta es la parte mas importante de un code review, se debe pensar en:
+
+- es mantenible?
+- como interactuan cada uno de los componentes?
+- es momento para sugerir un refactoring mayor?
+- es posible usar un patron de diseno?
+
+---
+
+# Perspectiva del revisor
+
+## Que aspectos debo mirar?
+
+### Funcionalidad
+
+- La implementacion realmente hace lo que el autor desea?
+- Corner cases.
+- Revisores experimentados para problemas que son dificiles de detectar solo
+ejecutando el codigo, por ejemplo deadlocks y race conditions.
+
+---
+
+# Perspectiva del revisor
+
+## Que aspectos debo mirar?
+
+### Complejidad
+
+Complejo en este caso significa:
+- *no se entiende facilmente al leer el codigo*
+- *nuevos bugs seran introducidos facilmente si alguien intenta modificar este codigo*
+
+--
+
+- ❓ Es este cambio mas complejo de lo que deberia ser?
+- ❓ Las funciones son demasiado grandes?
+- ❓ La clase tiene muchas responsabilidades?
+
+*Lectura recomendada: https://martinfowler.com/bliki/CodeSmell.html*
+
+---
+
+# Perspectiva del revisor
+
+## Que aspectos debo mirar?
+
+### Tests
+
+Dependiendo del caso, el commit debe contener pruebas unitarias, de integracion,
+o e2e.
+
+Si los tests estan malos, es muy probable que el resto del codigo tambien lo este.
+
+❗ Normalmente no tenemos "test para los tests", debido a esto, el codigo debe
+ser extremadamente simple, a tal punto que no quede duda de su correctitud al
+leerlo (basicamente, nosotros somos los "tests para los tests").
+
+---
+
+# Perspectiva del revisor
+
+## Que aspectos debo mirar?
+
+### Nombres
+
+*There are 2 hard problems in computer science: cache invalidation,
+naming things, and off-by-1 errors.*
+
+---
+
+# Perspectiva del revisor
+
+## Que aspectos debo mirar?
+
+### Commentarios
+
+Usually comments are useful when they explain why some code exists, and should
+not be explaining what some code is doing. If the code isn’t clear enough to
+explain itself, then the code should be made simpler.
+
+---
+
+# Perspectiva del revisor
+
+## Que aspectos debo mirar?
+
+### Estilo
+
+If you want to improve some style point that isn’t in the style guide, prefix
+your comment with “Nit:” to let the developer know that it’s a nitpick that you
+think would improve the code but isn’t mandatory. Don’t block CLs from being
+submitted based only on personal style preferences.
+
+Guia de estilo recomendada http://google.github.io/styleguide/
+
+---
+
+# Perspectiva del revisor
+
+## Que aspectos debo mirar?
+
+### Contexto
+
+Wider look of the changes.
+
+Don’t accept CLs that degrade the code health of the system.
+
+---
+
+# Perspectiva del revisor
+
+## Que aspectos debo mirar?
+
+### Que se hizo bien!
+
+Es muy importante reconocer el buen trabajo de los demas, principalmente de
+aquellos que estan comenzando. Invierte tiempo en resaltar lo bueno y no solo
+lo malo de cada commit.
+
+---
+
+# Perspectiva del revisor
+
+## Resumen
+
+Make sure to review every line of code you’ve been asked to review,
+ look at the context, make sure you’re improving code health, and compliment
+ developers on good things that they do.
+
+---
+
+# Perspectiva del revisor
+
+## Como navegar en los cambios.
+
+Step One: Take a broad view of the change. Look at the cl description
+
+Step Two: Examine the main parts of the CL.  If the CL is too large for you to
+figure out which parts are the major parts, ask the developer what you should
+look at first, or ask them to split up the CL into multiple CLs.
+
+Step Three: Look through the rest of the CL in an appropriate sequence
+
+Once you’ve confirmed there are no major design problems with the CL as a whole,
+try to figure out a logical sequence to look through the files while also making
+ sure you don’t miss reviewing any file.
+
+---
+
+# Perspectiva del revisor
+
+## Velocidad de un code review.
+
+- Cross-Time-Zone Reviews
+- LGTM With Comments
+- Code Review Improvements Over Time
+- Emergencies
+
+---
+
+# Perspectiva del revisor
+
+## Como escribir buenos comentarios.
+
+- Be kind.
+- Explain your reasoning.
+- Balance giving explicit directions with just pointing out problems and letting
+the developer decide.
+- Encourage developers to simplify code or add code comments instead of just 
+explaining the complexity to you.
+
+---
+
+# Perspectiva del revisor
+
+## Como manejar las respuestas a los comentarios.
+
+Sometimes a developer will push back on a code review. Either they will disagree
+ with your suggestion or they will complain that you are being too strict in general.
+
+- Who is right?
+- Upsetting Developers
+- Cleaning It Up Later
+- General Complaints About Strictness
+- Resolving Conflicts
+
+---
+
+# Perspectiva del autor
+
+## Pre requisitos
+
+---
+
+# Perspectiva del autor
+
+## Commits pequenos.
+
+---
+
+# Perspectiva del autor
+
+# Como luce un buen commentario
+
+---
+# Perspectiva del autor
+
+## Descripcion
+
+<img src="./commit-example-desc.png" alt="commit description" style="width:100%;">
+
+---
+# Perspectiva del autor
+
+## Contexto
+<img src="./commit-example-why.png" alt="commit description" style="width:100%;">
+
+---
+# Perspectiva del autor
+
+## Metadata
+<img src="./commit-example-metadata.png" alt="commit description" style="width:100%;">
+
+---
+
+# Perspectiva del autor
+
+#Como manejar los comentarios del revisor?
+
+---
+
+# Trabajo futuro
+
+- Patrones de diseno
+- TDD
+- Refactoring
+- Arquitectura
+
+---
+
+# Gracias!
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
