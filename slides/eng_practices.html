@@ -222,6 +222,7 @@ Los robots tambien pueden ser autores!
 
 Esta es la parte mas importante de un code review, se debe pensar en:
 
+- es este cambio necesario?
 - es mantenible?
 - como interactuan cada uno de los componentes?
 - es momento para sugerir un refactoring mayor?
@@ -237,8 +238,8 @@ Esta es la parte mas importante de un code review, se debe pensar en:
 
 - La implementacion realmente hace lo que el autor desea?
 - Corner cases.
-- Revisores experimentados para problemas que son dificiles de detectar solo
-ejecutando el codigo, por ejemplo deadlocks y race conditions.
+- Revisores experimentados para problemas que son dificiles de detectar al
+ejecutar el codigo, por ejemplo deadlocks y race conditions.
 
 ---
 
@@ -283,10 +284,39 @@ leerlo (basicamente, nosotros somos los "tests para los tests").
 
 ## Que aspectos debo mirar?
 
+### Recomendaciones para tests
+
+- No probar detalles de implementacion, estos cambian rapidamente. En cambio,
+probar comportamientos y *contratos* definidos en la API, si existen.
+
+- Usar mocks/inyecion de dependencias en las pruebas unitarias.
+
+- Evaular falsos positivos. Ejemplo, es posible pasar los test solo retornando 
+un numero random?
+
+---
+
+# Perspectiva del revisor
+
+## Que aspectos debo mirar?
+
 ### Nombres
 
 *There are 2 hard problems in computer science: cache invalidation,
 naming things, and off-by-1 errors.*
+
+--
+
+- estilo
+- signigicado
+- scope:
+--
+
+    - bloques
+    - funciones
+    - clases
+    - API
+    - servicios
 
 ---
 
@@ -296,9 +326,13 @@ naming things, and off-by-1 errors.*
 
 ### Commentarios
 
-Usually comments are useful when they explain why some code exists, and should
-not be explaining what some code is doing. If the code isn’t clear enough to
-explain itself, then the code should be made simpler.
+Los comentarios deben explicar el "por-que" del codigo, mas no el "como". Si
+el codigo requiere muchos comentarios, entonces deberia escribirse de otra
+manera mas simple.
+
+No se debe confundir comentarios con documentacion. Todas las interfaces y
+metodos publicos deben contener informacion acerca como y cuando usarse. La
+documentacion no debe revelar detalles de implementacion.
 
 ---
 
@@ -308,10 +342,14 @@ explain itself, then the code should be made simpler.
 
 ### Estilo
 
-If you want to improve some style point that isn’t in the style guide, prefix
-your comment with “Nit:” to let the developer know that it’s a nitpick that you
-think would improve the code but isn’t mandatory. Don’t block CLs from being
-submitted based only on personal style preferences.
+Es importante mantener el mismo estilo de codificacion en todo el equipo, para
+esto se debe definir un conjunto de "guidelines" que describen como debe ser
+escrito el codigo.
+
+Los cambios y mejoras mas alla de la guia de estilo deben ser opcionales y
+no bloquear la revision. Es importante recordar que esto es una medida subjetiva
+y que todos tenemos un punto de vista diferente con respecto a como luce el 
+codigo.
 
 Guia de estilo recomendada http://google.github.io/styleguide/
 
@@ -323,9 +361,14 @@ Guia de estilo recomendada http://google.github.io/styleguide/
 
 ### Contexto
 
-Wider look of the changes.
+Algunas veces los commits cambian pocas lineas y parece un cambio "limpio",
+pero cuando miramos el contexto al rededor, podemos descubrir que es una logica
+que se repite en otras partes y puede ser evitada.
 
-Don’t accept CLs that degrade the code health of the system.
+Los commits que degraden la calidad del codigo no deben ser aceptados. A menos
+de que sea una emergencia, todos los commits deben llevar a una mejora.
+
+Como convertir un sistema simple en algo muy complejo? Una linea a la vez.
 
 ---
 
@@ -333,7 +376,7 @@ Don’t accept CLs that degrade the code health of the system.
 
 ## Que aspectos debo mirar?
 
-### Que se hizo bien!
+### Que se hizo bien.
 
 Es muy importante reconocer el buen trabajo de los demas, principalmente de
 aquellos que estan comenzando. Invierte tiempo en resaltar lo bueno y no solo
@@ -343,29 +386,23 @@ lo malo de cada commit.
 
 # Perspectiva del revisor
 
-## Resumen
-
-Make sure to review every line of code you’ve been asked to review,
- look at the context, make sure you’re improving code health, and compliment
- developers on good things that they do.
-
----
-
-# Perspectiva del revisor
-
 ## Como navegar en los cambios.
 
-Step One: Take a broad view of the change. Look at the cl description
+Paso 1: Obtener una vision general del cambio, entender la descripcion del commit.
 
-Step Two: Examine the main parts of the CL.  If the CL is too large for you to
-figure out which parts are the major parts, ask the developer what you should
-look at first, or ask them to split up the CL into multiple CLs.
+Paso 2: Identificar y evaluar las partes principales del commit. Si el commit es
+muy grande, se puede pedir al autor dividirlo en cambios mas pequenos. Otra
+opcion es preguntar al autor que partes del codigo son mas importantes a ser
+revisadas.
 
-Step Three: Look through the rest of the CL in an appropriate sequence
+Paso 3: Revisar el resto del codigo de manera apropiada. Si es necesario, esta
+etapa se puede realizar en varias sesiones, utilizando herramientas para marcar
+algunos archivos como revisados.
 
-Once you’ve confirmed there are no major design problems with the CL as a whole,
-try to figure out a logical sequence to look through the files while also making
- sure you don’t miss reviewing any file.
+--
+
+Si no estas seguro de hacer una buena revision al commit, busca otra
+persona con mas experiencia que pueda ayudar en la revision.
 
 ---
 
@@ -373,10 +410,10 @@ try to figure out a logical sequence to look through the files while also making
 
 ## Velocidad de un code review.
 
-- Cross-Time-Zone Reviews
-- LGTM With Comments
-- Code Review Improvements Over Time
-- Emergencies
+- ### Cross-Time-Zone Reviews
+- ### LGTM con comentarios
+- ### No comprometer calidad en la revision vs velocidad de la misma.
+- ### Emergencias (no debe ser la regla general). Asegurate de dar seguimiento para mejorar el codigo despues de que pase la tormenta.
 
 ---
 
@@ -384,27 +421,31 @@ try to figure out a logical sequence to look through the files while also making
 
 ## Como escribir buenos comentarios.
 
-- Be kind.
-- Explain your reasoning.
-- Balance giving explicit directions with just pointing out problems and letting
-the developer decide.
-- Encourage developers to simplify code or add code comments instead of just 
-explaining the complexity to you.
+- ### Se amable.
+- ### Explica tus ideas.
+- ### No es bueno dar todas las soluciones al equipo, en vez de eso, explica el problema y permite al autor encontrar la solucion por si mismo.
 
 ---
 
 # Perspectiva del revisor
 
-## Como manejar las respuestas a los comentarios.
+## Como escribir buenos comentarios.
 
-Sometimes a developer will push back on a code review. Either they will disagree
- with your suggestion or they will complain that you are being too strict in general.
+- ### Sugiere al autor a cambiar el codigo, en vez de explicar con palabras las partes complejas del cambio.
+(Las explicaciones durante la revision, generalmente
+no son utiles para los desarrolladores que ven el codigo en el futuro).
+- ### Comparte el conocimiento.
+- ### Usa links de referencia en vez de tus propias explicaciones,
+ de esta manera el autor puede seguir compartiendo los links cuando sea revisor.
 
-- Who is right?
-- Upsetting Developers
-- Cleaning It Up Later
-- General Complaints About Strictness
-- Resolving Conflicts
+---
+
+# Perspectiva del revisor
+
+## Resumen
+
+Asegurate de revisar cada linea de codigo, garantizando que el cambio mejore
+la calidad del codigo, y reconocer el buen trabajo de los demas.
 
 ---
 
@@ -412,51 +453,163 @@ Sometimes a developer will push back on a code review. Either they will disagree
 
 ## Pre requisitos
 
+- ### Compila?
+--
+
+- ### Pasa los tests?
+--
+
+- ### Nuevos tests se agregaron?
+--
+
+- ### El codigo es facil de leer?
+--
+
+- ### La descripcion refleja los cambios que estoy haciendo?
+
 ---
 
 # Perspectiva del autor
 
-## Commits pequenos.
+## Commits pequenos o muy grandes.
+
+Elegir el tamano adecuado para el commit es dificil, pero muy importante. 
+Asegurate de que cada cambio sea auto contenido y de no mezclar responsablidades 
+en el mismo commit.
+
+Usa herramientas para esto:
+
+mercurial:
+
+```
+hg split
+hg fold
+```
+
+```
+git squash
+git reset + add + commit + add + commit de nuevo.
+```
+--
+
+[git rebase](https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---interactive)
+```
+git squash
+git rebase -i
+```
 
 ---
 
-# Perspectiva del autor
+# Perspectiva del autor - Comentario
 
-# Como luce un buen commentario
+## Como luce un buen commentario
 
 ---
-# Perspectiva del autor
+# Perspectiva del autor - Comentario
 
 ## Descripcion
 
 <img src="./commit-example-desc.png" alt="commit description" style="width:100%;">
 
 ---
-# Perspectiva del autor
+# Perspectiva del autor - Comentario
+
+## Descripcion
+
+### Resumen corto de que cambio se hizo, debe ser una oracion completa, seguida de una linea en blanco.
+
+### Generalmente la descripcion comienza por un verbo imperativo, "Add", "Delete", "Refactor".
+
+---
+# Perspectiva del autor - Comentario
 
 ## Contexto
 <img src="./commit-example-why.png" alt="commit description" style="width:100%;">
 
 ---
-# Perspectiva del autor
+# Perspectiva del autor - Comentario
+
+## Contexto
+
+### Da una descripcion del problema a ser solucionado, incluye una explicacion de la solucion utilizada y las alternativas consideradas.
+
+### Sirve para resaltar las partes importantes que deben ser revisadas con mayor atencion.
+
+---
+# Perspectiva del autor - Comentario
 
 ## Metadata
 <img src="./commit-example-metadata.png" alt="commit description" style="width:100%;">
 
 ---
+# Perspectiva del autor - Comentario
 
-# Perspectiva del autor
+## Metadata
 
-#Como manejar los comentarios del revisor?
+### Sirve para describir como se probo el codigo, quienes fueron los revisores, que partes del sistema son afectadas, etc. 
+
+--
+
+### 🤖 Parte mas amada por los robots. 🤖
+
+---
+
+# Perspectiva del autor - Comentario
+
+## Comentarios del revisor:
+
+--
+
+### Aplica los cambios sugeridos, es una gran manera de aprender.
+
+--
+
+### No lo tomes personal.
+--
+
+### Nunca respondas si estas enojado.
+--
+
+### Si los comentarios no ayudan a mejorar el commit, intenta contactar al revisor personalmente y pregunta cuales eran sus intereses.
+
+--
+
+### Escala a un ingeniero mas senior si es necesario.
+
+
+---
+
+# Revisor y autor
+
+## Como manejar las respuestas a los comentarios.
+
+- Quien tiene la razon?
+  - Asegurate de entender la perspectiva de la otra persona.
+  - Mejorar la calidad del codigo generalmente se da en pasos pequenos.
+  - Enfocate en los hechos de una manera tecnica, no personal.
+  - Usa la guida de estilos, y links de referencia.
+
+--
+
+- Desarrolladores molestos:
+  - "Este es el codigo mas feo que he visto en toda mi vida"[1].
+  - Normalmente dura poco tiempo, es mejor esperar y responder despues.
+  - Usa un lenguaje adecuado.
+
+--
+
+- "Lo voy a mejorar en un commit posterior" <- Nunca pasa.
+
+1. Caso de la vida real.
 
 ---
 
 # Trabajo futuro
 
-- Patrones de diseno
-- TDD
-- Refactoring
-- Arquitectura
+- ### Patrones de diseno
+- ### TDD
+- ### Refactoring
+- ### Arquitectura
 
 ---
 
