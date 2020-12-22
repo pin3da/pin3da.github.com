@@ -9,7 +9,7 @@ tags:
   - programming
 ---
 
-Since [2018](https://github.com/pin3da/advent-of-code/tree/master/2018) I started participating in [Advent of Code](https://adventofcode.com/) with the goal of learning new programming languages. This year I choosed [kotlin](https://kotlinlang.org/), and the experience was very good. I'll list some of the language features I liked so far.
+Since [2018](https://github.com/pin3da/advent-of-code/tree/master/2018) I started participating in [Advent of Code](https://adventofcode.com/) with the goal of learning new programming languages. This year I chose [kotlin](https://kotlinlang.org/), and the experience was very good. I'll list some of the language features I liked so far.
 
 ## Sealed Classes
 
