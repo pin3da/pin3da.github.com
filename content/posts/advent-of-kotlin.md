@@ -125,4 +125,4 @@ data class Entry(val add: Int, val value: Long)
 ----
 ## Next ?
 
-I will keep trying Kotlin in other scenarios, and update this post if I found somethig interested. Also, if you have interesting ideas for next year's advent of code, please let me know! (contact in the "about" page of this site).
+I will keep trying Kotlin in other scenarios, and update this post if I found somethig interesting. Also, if you have interesting ideas for next year's advent of code, please let me know! (contact in the "about" page of this site).
