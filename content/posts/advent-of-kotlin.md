@@ -13,7 +13,7 @@ Since [2018](https://github.com/pin3da/advent-of-code/tree/master/2018) I starte
 
 ## Sealed Classes
 
-For [Day's 14](https://adventofcode.com/2020/day/14) solution I wanted to have a class `Entry` and different subclasses of it. The only difference with normal [OOP inheritance](https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)) is that I wanted to restric all the object to belong exactly to a single subclass. It turns out that sealed classes are designed for this behavior.
+For [Day's 14](https://adventofcode.com/2020/day/14) solution I wanted to have a class `Entry` and different subclasses of it. The only difference with normal [OOP inheritance](https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)) is that I wanted to restric all the object to belong exactly to a single subclass. It turns out that [sealed classes](https://kotlinlang.org/docs/reference/sealed-classes.html) are designed for this behavior.
 
 {{< highlight kotlin >}}
 sealed class Entry
@@ -33,6 +33,8 @@ when (entry) {
 {{< /highlight >}}
 
 Since the class was sealed, the compiler *knows* all the possible subclasses and will verify that there is a proper evaluation for all of them. For instance, if we add a new subclass of `Entry` we will get an error in the code above (which would be uncaught otherwise).
+
+If we add the subclass `Extra`, the compiler will show the following error: `'when' expression must be exhaustive, add necessary 'is Extra' branch or 'else' branch instead`.
 
 Another nice property of the `when` statement is that we can use it for conditional branching executions (an statement), but also as an expression.
 
@@ -54,6 +56,8 @@ val msg = when(a) {
     4 -> "second condition"
     else -> "else"
 }
+{{< /highlight >}}
+{{< highlight kotlin >}}
 // Mutable (defined as var)
 var msg = "else"
 if (a == 3) {
@@ -69,7 +73,7 @@ Note: Initially I thouhgt that having `val` and `var` was very confusing, but in
 
 After a few solutions I got used to the functional-like approach that kotlin uses, the support for lambda functions is really good and the code ends being clear and concise. This will also help to reduce mutablility in some places.
 
-Example, let's parse the input for day 1's challenge, and get its sum.
+Example, let's suppose we have a file `01.in` with several lines representing integer numbers, and we want to compute the sum of all of them.
 
 {{< highlight kotlin >}}
 // Both variables can be immutable.
@@ -102,10 +106,8 @@ In C++ I would end doing something like:
 struct Entry {
     int add;
     long value;
-    bool operator < (const Entry& other) const {
-        if (add != other.add) return add < other.add;
-        return value < other.value;
-    }
+    // Default comparator since C++ 20: https://en.cppreference.com/w/cpp/language/default_comparisons
+    auto operator<=>(const Entry&) const = default;
 }
 
 ostream& operator<<(ostream& os, const Entry& entry) {
@@ -119,3 +121,8 @@ But in kotlin, it is a one-liner :D.
 {{< highlight kotlin >}}
 data class Entry(val add: Int, val value: Long)
 {{< /highlight >}}
+
+----
+## Next ?
+
+I will keep trying Kotlin in other scenarios, and update this post if I found somethig interested. Also, if you have interesting ideas for next year's advent of code, please let me know! (contact in the "about" page of this site).
