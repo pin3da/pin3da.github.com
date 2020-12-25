@@ -45,4 +45,4 @@ such as ["the nodeschool day"](https://nodeschool.io/pereira/) and ["The angular
 
 # Contact
 
-Feel free to get in touch with me. You can email me at [manuel.felipe.pineda@gmail.com](mailto:manuel.felipe.pineda@gmail.com) or send me a somke signal on [twitter](https://twitter.com/pin3da_)
+Feel free to get in touch with me. You can email me at [manuel.felipe.pineda@gmail.com](mailto:manuel.felipe.pineda@gmail.com) or send me a smoke signal on [twitter](https://twitter.com/pin3da_)
