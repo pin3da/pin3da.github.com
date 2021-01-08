@@ -69,6 +69,26 @@ if (a == 3) {
 
 Note: Initially I thouhgt that having `val` and `var` was very confusing, but in practice I found it handy and easy to remember  ¯\\_(ツ)_/¯
 
+## Smart Cast
+
+Kotlin keeps track of the results of the `is` operator, which becames really handy in the case you need to downcast an object. Based of the code above, let's check the differences between Java and Kotlin.
+
+{{< highlight Java >}}
+if (expr instanceof Mask) {
+    // cast needed in order to access "Mask" members.
+    System.out.println(((Mask)expr).mask);
+}
+{{< /highlight >}}
+
+
+{{< highlight kotlin >}}
+if (expr is Mask) {
+   // No cast needed.
+   print(expr.mask)
+}
+{{< /highlight >}}
+
+
 ## Functional flavor
 
 After a few solutions I got used to the functional-like approach that kotlin uses, the support for lambda functions is really good and the code ends being clear and concise. This will also help to reduce mutablility in some places.
