@@ -35,3 +35,9 @@ add Lock = Escape
 keysym Caps_Lock = Escape
 keysym Escape = Caps_Lock
 ```
+
+## Gnome flashback + i3
+
+This is probably the easiest way to fix most of the UI stuff
+
+https://github.com/regolith-linux/i3-gnome-flashback
