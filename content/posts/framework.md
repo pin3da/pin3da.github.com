@@ -41,3 +41,7 @@ keysym Escape = Caps_Lock
 This is probably the easiest way to fix most of the UI stuff
 
 https://github.com/regolith-linux/i3-gnome-flashback
+
+## Middle click
+
+`gsettings set org.gnome.desktop.peripherals.touchpad tap-button-map "lmr"`
