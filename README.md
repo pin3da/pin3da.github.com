@@ -1,7 +1,7 @@
 pin3da.github.com
 =================
 
-This site is built using [Hugo](https://gohugo.io/) and the theme [Hermit](http://localhost:5000)
+This site is built using [Hugo](https://gohugo.io/) and the theme [Hermit-V2](https://themes.gohugo.io/themes/hermit-v2/)
 
 ## New installations
 
