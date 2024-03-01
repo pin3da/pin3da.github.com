@@ -1,10 +1,7 @@
 #!/bin/sh
 
-git checkout -b main
-
 echo "Deleting old publication"
 rm -rf public
-mkdir public
 
 hugo
 
