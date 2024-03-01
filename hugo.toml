@@ -6,7 +6,7 @@
 
 baseURL = "https://pin3da.github.io/"
 defaultContentLanguage = "en"
-defaultContentLanguageInSubdir = true
+defaultContentLanguageInSubdir = false
 theme = "hermit-v2"
 
 [languages]
@@ -17,7 +17,7 @@ theme = "hermit-v2"
     weight = 1
 
 
-languageCode = "en-us"
+# languageCode = "en-us"
 
 # title = "CHANGE ME"
 # enableGitInfo = true
@@ -51,11 +51,9 @@ dateformShort = "Jan 2"
 dateformNum = "2006-01-02"
 dateformNumTime = "2006-01-02 15:04 -0700"
 
-# description = "CHANGE ME SITE DESCRIPTION"
 # images = [""]
 themeColor = "#494f5c"
 
-#homeSubtitle = "CHANGE ME HOME SUBTITLE"
 footerCopyright = "https://creativecommons.org/licenses/by-nc/4.0/"
 # bgImg = ""
 # gitUrl = "https://github.com/1bl4z3r/hermit-V2/tree/staging"
