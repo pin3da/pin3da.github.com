@@ -1,6 +1,6 @@
 #!/bin/sh
 
-git checkout -b master
+git checkout -b main
 
 echo "Deleting old publication"
 rm -rf public
@@ -14,6 +14,6 @@ git checkout -b master
 git remote add origin git@github.com:pin3da/pin3da.github.com.git
 git add -A
 git commit -m 'automatic deploy'
-git push -f origin master
+git push -f origin main
 cd ..
 git checkout src
