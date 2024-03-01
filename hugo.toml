@@ -1,0 +1,97 @@
+# THIS IS AN EXAMPLE ON HOW YOU SHOULD CONFIGURE YOUR hugo.toml
+# See this hugo.toml in action at https://github.com/1bl4z3r/hermit-V2/blob/staging/hugo.toml
+# Example Site is Staging branch, acessible at https://github.com/1bl4z3r/hermit-V2/tree/staging
+# To see what each config does, refer to https://1bl4z3r.github.io/hermit-V2/en/posts/explaining-configs/
+# Open Issue or Pull Request at https://github.com/1bl4z3r/hermit-V2
+
+baseURL = "pin3da.github.io"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
+theme = "hermit-v2"
+
+[languages]
+  [languages.en]
+    title = 'Manuel Pineda'
+    [languages.en.params]
+         homeSubtitle =  "\"The machine doesn't know you exist. The machine doesn't care. The machine is there, waiting.\""
+    weight = 1
+
+
+languageCode = "en-us"
+
+# title = "CHANGE ME"
+# enableGitInfo = true
+
+pygmentsCodefences = true
+pygmentsUseClasses = true
+#hasCJKLanguage = true
+
+rssLimit = 10
+
+copyright = "https://creativecommons.org/licenses/by-nc/4.0/"
+enableEmoji = true
+
+[params.author]
+name = "Manuel Pineda"
+about = "about-hugo"
+
+[blackfriday]
+# hrefTargetBlank = true
+# noreferrerLinks = true
+# nofollowLinks = true
+
+[taxonomies]
+tag = "tags"
+# Categories are disabled by default.
+# category = "categories"
+
+[params]
+dateform = "Jan 2, 2006"
+dateformShort = "Jan 2"
+dateformNum = "2006-01-02"
+dateformNumTime = "2006-01-02 15:04 -0700"
+
+# description = "CHANGE ME SITE DESCRIPTION"
+# images = [""]
+themeColor = "#494f5c"
+
+#homeSubtitle = "CHANGE ME HOME SUBTITLE"
+footerCopyright = "https://creativecommons.org/licenses/by-nc/4.0/"
+# bgImg = ""
+# gitUrl = "https://github.com/1bl4z3r/hermit-V2/tree/staging"
+
+justifyContent = false
+
+relatedPosts = true
+code_copy_button = true
+
+homeSubtitlePrinter = true
+scrollToTop = true
+global_mathjax = false
+readTime = true
+readTimeSeparator = "~"
+# legacyLayout = false
+shareSocial = true
+# googleTagManager = "GTM-XXXXXXXX"
+# tagSymbol = "#"
+# categorySymbol = "⊲"
+
+[[params.socialLinks]]
+name = "gitlab"
+url = "https://gitlab.com/pin3da"
+
+[[params.socialLinks]]
+name = "github"
+url = "https://github.com/pin3da"
+
+[menu]
+
+[[menu.main]]
+name = "Posts"
+url = "posts/"
+weight = 10
+
+[[menu.main]]
+name = "About"
+url = "about-hugo/"
+weight = 20

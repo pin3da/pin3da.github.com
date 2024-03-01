@@ -18,7 +18,7 @@ I strongly recommend this to everybody, this really changed my life. I think thi
 is important because you will learn things (usually very hard to learn) as
 self-motivation and discipline. There are A LOT of topics that will be missing
 or poorly taught in our education, but with constant practice you will be able
-to learn all of this.
+to learn all of them.
 
 Besides this, I consider the programming contest is a lot of fun, I have known
 the most amazing people (currently some of my best friends) here. I also have
@@ -45,4 +45,4 @@ such as ["the nodeschool day"](https://nodeschool.io/pereira/) and ["The angular
 
 # Contact
 
-Feel free to get in touch with me. You can email me at [manuel.felipe.pineda@gmail.com](mailto:manuel.felipe.pineda@gmail.com) or send me a smoke signal on [twitter](https://twitter.com/pin3da_)
+Feel free to get in touch with me. You can email me at [manuel.felipe.pineda@gmail.com](mailto:manuel.felipe.pineda@gmail.com).
