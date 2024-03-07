@@ -4,7 +4,7 @@ date: 2023-06-23T18:33:51+02:00
 draft: false
 ---
 
-I recently switched to a [Framework](https://frame.work/) laptop. They suggest Fedora as they linux distro, so I decided to give it a try despite being a long-time Debian user. This post aims to document some of the issues I had and how to solve them.
+I recently switched to a [Framework](https://frame.work/) laptop. They suggest Fedora as their linux distro, so I decided to give it a try despite being a long-time Debian user. This post aims to document some of the issues I had and how to solve them.
 
 ## Official guideline
 
