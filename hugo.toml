@@ -14,6 +14,7 @@ theme = "hermit-v2"
     title = 'Manuel Pineda'
     [languages.en.params]
          homeSubtitle =  "\"The machine doesn't know you exist. The machine doesn't care. The machine is there, waiting.\""
+         homeSubtitlePrinter = false
     weight = 1
 
 
