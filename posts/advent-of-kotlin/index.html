@@ -1,0 +1,224 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="15 days">
+<link rel="author" href="/humans.txt">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="msapplication-TileImage" content="/mstile-144x144.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="theme-color" content="#494f5c">
+<meta name="msapplication-TileColor" content="#494f5c">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#494f5c"><meta name="author" content="Manuel Pineda">
+<meta itemprop="name" content="Advent of Kotlin">
+<meta itemprop="description" content="Since 2018 I started participating in Advent of Code with the goal of learning new programming languages. This year I chose kotlin, and the experience was very good. I&rsquo;ll list some of the language features I liked so far.
+Sealed Classes For Day&rsquo;s 14 solution I wanted to have a class Entry and different subclasses of it. The only difference with normal OOP inheritance is that I wanted to restric all the object to belong exactly to a single subclass."><meta itemprop="datePublished" content="2020-12-22T15:20:52+01:00" />
+<meta itemprop="dateModified" content="2020-12-22T15:20:52+01:00" />
+<meta itemprop="wordCount" content="722">
+<meta itemprop="keywords" content="kotlin,programming," /><meta property="og:title" content="Advent of Kotlin" />
+<meta property="og:description" content="Since 2018 I started participating in Advent of Code with the goal of learning new programming languages. This year I chose kotlin, and the experience was very good. I&rsquo;ll list some of the language features I liked so far.
+Sealed Classes For Day&rsquo;s 14 solution I wanted to have a class Entry and different subclasses of it. The only difference with normal OOP inheritance is that I wanted to restric all the object to belong exactly to a single subclass." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pin3da.github.io/posts/advent-of-kotlin/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-12-22T15:20:52+01:00" />
+<meta property="article:modified_time" content="2020-12-22T15:20:52+01:00" />
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Advent of Kotlin"/>
+<meta name="twitter:description" content="Since 2018 I started participating in Advent of Code with the goal of learning new programming languages. This year I chose kotlin, and the experience was very good. I&rsquo;ll list some of the language features I liked so far.
+Sealed Classes For Day&rsquo;s 14 solution I wanted to have a class Entry and different subclasses of it. The only difference with normal OOP inheritance is that I wanted to restric all the object to belong exactly to a single subclass."/>
+<title>Advent of Kotlin</title>
+<link rel="stylesheet dns-prefetch preconnect preload prefetch" as="style" href="https://pin3da.github.io/css/style.min.d0b20be7baabc80eb407cbffc7e54d364796f75f0c7f757c906f90f3c84fc262.css" integrity="sha256-0LIL57qryA60B8v/x+VNNkeW918Mf3V8kG+Q88hPwmI=" crossorigin="anonymous">
+	</head>
+<body id="page">
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://pin3da.github.io/">Manuel Pineda</a>
+				</div>
+				<nav class="site-nav hide-in-mobile"><a href="https://pin3da.github.io/posts/">Posts</a><a href="https://pin3da.github.io/about-hugo/">About</a></nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://gitlab.com/pin3da" target="_blank" rel="noopener me" title="Gitlab"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"></path></svg></a><a href="https://github.com/pin3da" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="share-btn" class="hdr-btn" title="Share"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+ 
+<div id="share-links" class="animated fast">
+    
+    
+    
+    
+    <ul>
+        <li>
+            <a href="https://twitter.com/intent/tweet?hashtags=hermit2&amp;url=https%3a%2f%2fpin3da.github.io%2fposts%2fadvent-of-kotlin%2f&amp;text=Advent%20of%20Kotlin" target="_blank" rel="noopener" aria-label="Share on X"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path class="st0" d="m21.3 21.1 -11.4 -18.2h-7.2l11.4 18.2zm-18.6 0 7.2 -6.6m4.2 -5 7.2 -6.6"/></svg></a>
+        </li>
+        <li>
+            <a href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fpin3da.github.io%2fposts%2fadvent-of-kotlin%2f" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        </li>
+        <li>
+            <a href="mailto:?subject=Advent%20of%20Kotlin&amp;body=https%3a%2f%2fpin3da.github.io%2fposts%2fadvent-of-kotlin%2f" target="_self" rel="noopener" aria-label="Share on Email"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fpin3da.github.io%2fposts%2fadvent-of-kotlin%2f&amp;source=https%3a%2f%2fpin3da.github.io%2f&amp;title=Advent%20of%20Kotlin&amp;summary=Advent%20of%20Kotlin%2c%20by%20Manuel%20Pineda%0a%0a%3cnil%3e%0a" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        </li>
+        <li>
+            <a href="#" onclick="linkShare(&#34;Advent of Kotlin&#34;,&#34;https://pin3da.github.io/posts/advent-of-kotlin/&#34;,&#34;Advent of Kotlin, by Manuel Pineda\n\n\u003cnil\u003e\n&#34;); return false;" target="_self" rel="noopener" aria-label="Copy Link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></a>
+        </li>
+    </ul>
+</div><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://pin3da.github.io/posts/">Posts</a></li>
+			<li><a href="https://pin3da.github.io/about-hugo/">About</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster"><article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 22, 2020</span></div>
+				<h1>Advent of Kotlin</h1>
+			</header>
+			<div class="post-info"><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg><a href="/about-hugo/" target="_blank">Manuel Pineda</a></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://pin3da.github.io/tags/kotlin">kotlin</a></span><span class="tag"><a href="https://pin3da.github.io/tags/programming">programming</a></span></p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>722 Words
+    ~
+    
+    
+    
+    3 Minutes, 16 Seconds</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-12-22 15:20 &#43;0100</p></div>
+			<hr class="post-end">
+			<div class="content">
+				<p>Since <a href="https://github.com/pin3da/advent-of-code/tree/master/2018">2018</a> I started participating in <a href="https://adventofcode.com/">Advent of Code</a> with the goal of learning new programming languages. This year I chose <a href="https://kotlinlang.org/">kotlin</a>, and the experience was very good. I&rsquo;ll list some of the language features I liked so far.</p>
+<h2 id="sealed-classes">Sealed Classes<a href="#sealed-classes" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>For <a href="https://adventofcode.com/2020/day/14">Day&rsquo;s 14</a> solution I wanted to have a class <code>Entry</code> and different subclasses of it. The only difference with normal <a href="https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)">OOP inheritance</a> is that I wanted to restric all the object to belong exactly to a single subclass. It turns out that <a href="https://kotlinlang.org/docs/reference/sealed-classes.html">sealed classes</a> are designed for this behavior.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Entry</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mask</span>(<span style="color:#66d9ef">val</span> mask: CharArray) : Entry()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mem</span>(<span style="color:#66d9ef">val</span> addr: Long, <span style="color:#66d9ef">val</span> value: Long) : Entry()</span></span></code></pre></div>
+<h2 id="when-statement">When statement<a href="#when-statement" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Now, in order to evaluate the different kinds of <code>Entry</code> we need to conditionally check its &ldquo;real&rdquo; type. This is a good use case for the <code>when</code> statement:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">when</span> (entry) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">is</span> Mask <span style="color:#f92672">-&gt;</span> mask = entry.mask
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">is</span> Mem <span style="color:#f92672">-&gt;</span> memory[entry.addr] = applyMask(entry.<span style="color:#66d9ef">value</span>, mask)
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Since the class was sealed, the compiler <em>knows</em> all the possible subclasses and will verify that there is a proper evaluation for all of them. For instance, if we add a new subclass of <code>Entry</code> we will get an error in the code above (which would be uncaught otherwise).</p>
+<p>If we add the subclass <code>Extra</code>, the compiler will show the following error: <code>'when' expression must be exhaustive, add necessary 'is Extra' branch or 'else' branch instead</code>.</p>
+<p>Another nice property of the <code>when</code> statement is that we can use it for conditional branching executions (an statement), but also as an expression.</p>
+<ul>
+<li>Conditional execution, this is very similar to <code>switch</code> in other programming languages (nothing surprising here):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> a = <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">when</span> (a) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span> <span style="color:#f92672">-&gt;</span> println(<span style="color:#e6db74">&#34;first condition&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">4</span> <span style="color:#f92672">-&gt;</span> println(<span style="color:#e6db74">&#34;second condition&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#f92672">-&gt;</span> println(<span style="color:#e6db74">&#34;else&#34;</span>)
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></li>
+<li>Statement: This allows to reduce unnecessary mutability in the message, unlike the <code>if</code> alternative:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#75715e">// Immutable (defined as val)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> msg = <span style="color:#66d9ef">when</span>(a) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;first condition&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">4</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;second condition&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;else&#34;</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#75715e">// Mutable (defined as var)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> msg = <span style="color:#e6db74">&#34;else&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (a <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>) {
+</span></span><span style="display:flex;"><span>    msg = <span style="color:#e6db74">&#34;first condition&#34;</span> 
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) {
+</span></span><span style="display:flex;"><span>    msg = <span style="color:#e6db74">&#34;second condition&#34;</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></li>
+</ul>
+<p>Note: Initially I thouhgt that having <code>val</code> and <code>var</code> was very confusing, but in practice I found it handy and easy to remember  ¯\<em>(ツ)</em>/¯</p>
+<h2 id="smart-cast">Smart Cast<a href="#smart-cast" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Kotlin keeps track of the results of the <code>is</code> operator, which becames really handy in the case you need to downcast an object. Based of the code above, let&rsquo;s check the differences between Java and Kotlin.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Java" data-lang="Java"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (expr <span style="color:#66d9ef">instanceof</span> Mask) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// cast needed in order to access &#34;Mask&#34; members.</span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(((Mask)expr).<span style="color:#a6e22e">mask</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (expr <span style="color:#66d9ef">is</span> Mask) {
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// No cast needed.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   print(expr.mask)
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h2 id="functional-flavor">Functional flavor<a href="#functional-flavor" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>After a few solutions I got used to the functional-like approach that kotlin uses, the support for lambda functions is really good and the code ends being clear and concise. This will also help to reduce mutablility in some places.</p>
+<p>Example, let&rsquo;s suppose we have a file <code>01.in</code> with several lines representing integer numbers, and we want to compute the sum of all of them.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#75715e">// Both variables can be immutable.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> numbers = File(<span style="color:#e6db74">&#34;data/01.in&#34;</span>).readLines().map { <span style="color:#66d9ef">it</span>.toInt() }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> sum = numbers.sum()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Do something else with numbers</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#75715e">// Both variables must be mutable.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> numbers = mutableListOf()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (line <span style="color:#66d9ef">in</span> File(<span style="color:#e6db74">&#34;data/01.in&#34;</span>).readLines()) {
+</span></span><span style="display:flex;"><span>    numbers.add(line.toInt())
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> sum = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (n <span style="color:#66d9ef">in</span> numbers) {
+</span></span><span style="display:flex;"><span>    sum <span style="color:#f92672">+=</span> n
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Do something else with numbers</span></span></span></code></pre></div>
+<h2 id="data-classes">Data Classes<a href="#data-classes" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>In most of the challenges I ended creating classes that only hold information, and use those classes in maps or sets (which require some sort of comparator or hash). I also often want to print these objects.</p>
+<p>In C++ I would end doing something like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cc" data-lang="cc"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Entry</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> add;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> value;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Default comparator since C++ 20: https://en.cppreference.com/w/cpp/language/default_comparisons
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;=&gt;</span>(<span style="color:#66d9ef">const</span> Entry<span style="color:#f92672">&amp;</span>) <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ostream<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;&lt;</span>(ostream<span style="color:#f92672">&amp;</span> os, <span style="color:#66d9ef">const</span> Entry<span style="color:#f92672">&amp;</span> entry) {
+</span></span><span style="display:flex;"><span>    os <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;{&#39;</span> <span style="color:#f92672">&lt;&lt;</span> entry.add <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> entry.value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;}&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> os;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>But in kotlin, it is a one-liner :D.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Entry</span>(<span style="color:#66d9ef">val</span> add: Int, <span style="color:#66d9ef">val</span> value: Long)</span></span></code></pre></div>
+<hr>
+<h2 id="next-">Next ?<a href="#next-" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>I will keep trying Kotlin in other scenarios, and update this post if I found somethig interesting. Also, if you have interesting ideas for next year&rsquo;s advent of code, please let me know! (contact in the &ldquo;about&rdquo; page of this site).</p>
+
+			</div>
+
+		</article>
+		<div class="post-nav thin">
+			<a class="next-post" href="https://pin3da.github.io/posts/framework/">
+				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>Using Fedora on a Framework Laptop</span>
+			</a>
+			<a class="prev-post" href="https://pin3da.github.io/posts/programming-contests/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>¿Las competencias de programación son importantes en la vida laboral?</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+        repo="pin3da/pin3da.github.io"
+        issue-term="url"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script></div>
+	</main>
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+	<p>
+		&copy; 2024 <a href="https://pin3da.github.io/">Manuel Pineda</a>
+		&#183; https://creativecommons.org/licenses/by-nc/4.0/
+		&#183; Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
+		&#183; Theme <a href="https://github.com/1bl4z3r/hermit-V2" target="_blank" rel="noopener">Hermit-V2</a>
+		
+		&#183; <a href="https://pin3da.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		
+	</p>
+
+</footer>
+<script async src="https://pin3da.github.io/js/bundle.min.038214de9d568246fadcfeb06c69349925de3209f332ec123861b6aa031d63c6.js" integrity="sha256-A4IU3p1Wgkb63P6wbGk0mSXeMgnzMuwSOGG2qgMdY8Y=" crossorigin="anonymous"></script><script async src="https://pin3da.github.io/js/link-share.min.24409a4f6e5537d70ffc55ec8f9192208d718678cb8638585342423020b37f39.js" integrity="sha256-JECaT25VN9cP/FXsj5GSII1xhnjLhjhYU0JCMCCzfzk=" crossorigin="anonymous"></script>
+</body>
+
+</html>
