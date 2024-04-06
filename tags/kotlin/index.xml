@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kotlin on Manuel Pineda</title>
+    <link>https://pin3da.github.io/tags/kotlin/</link>
+    <description>Recent content in Kotlin on Manuel Pineda</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 22 Dec 2020 15:20:52 +0100</lastBuildDate>
+    <atom:link href="https://pin3da.github.io/tags/kotlin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advent of Kotlin</title>
+      <link>https://pin3da.github.io/posts/advent-of-kotlin/</link>
+      <pubDate>Tue, 22 Dec 2020 15:20:52 +0100</pubDate>
+      <guid>https://pin3da.github.io/posts/advent-of-kotlin/</guid>
+      <description>Since 2018 I started participating in Advent of Code with the goal of learning new programming languages. This year I chose kotlin, and the experience was very good. I&amp;rsquo;ll list some of the language features I liked so far.&#xA;Sealed Classes For Day&amp;rsquo;s 14 solution I wanted to have a class Entry and different subclasses of it. The only difference with normal OOP inheritance is that I wanted to restric all the object to belong exactly to a single subclass.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Manuel Pineda</title>
+    <link>https://pin3da.github.io/</link>
+    <description>Recent content on Manuel Pineda</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 06 Apr 2024 11:57:24 +0200</lastBuildDate>
+    <atom:link href="https://pin3da.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing Bazel in Fedora</title>
+      <link>https://pin3da.github.io/posts/install-bazel-fedora/</link>
+      <pubDate>Sat, 06 Apr 2024 11:57:24 +0200</pubDate>
+      <guid>https://pin3da.github.io/posts/install-bazel-fedora/</guid>
+      <description>Ref https://bazel.build/install/compile-source#bootstrap-bazel.&#xA;Download from source Download links are available at https://github.com/bazelbuild/bazel/releases.&#xA;Note: It requires downloading the distribution artifacts (dist), otherwise fails to find PROTOC :thinking_face:. More information in https://github.com/bazelbuild/bazel/issues/3801.&#xA;Dependencies Fedora doesn&amp;rsquo;t have build-essential, but it has a concept for groups of packets, the following worked:&#xA;sudo dnf groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;&#xA;sudo dnf install java-latest-openjdk java-latest-openjdk-devel&#xA;Self-contained binary This can be moved/copied to any place, e.g. cp output/bazel /usr/bin/bazel</description>
+    </item>
+    <item>
+      <title>Using Fedora on a Framework Laptop</title>
+      <link>https://pin3da.github.io/posts/framework/</link>
+      <pubDate>Fri, 23 Jun 2023 18:33:51 +0200</pubDate>
+      <guid>https://pin3da.github.io/posts/framework/</guid>
+      <description>I recently switched to a Framework laptop. They suggest Fedora as their linux distro, so I decided to give it a try despite being a long-time Debian user. This post aims to document some of the issues I had and how to solve them.&#xA;Official guideline The framework team has amazing support. Their documentation just worked out of the box.&#xA;https://guides.frame.work/Guide/Fedora+38+Installation+on+the+Framework+Laptop+13/165&#xA;The only small change I added was the tap-buttom-map configuration in Gnome to something sensible:</description>
+    </item>
+    <item>
+      <title>Advent of Kotlin</title>
+      <link>https://pin3da.github.io/posts/advent-of-kotlin/</link>
+      <pubDate>Tue, 22 Dec 2020 15:20:52 +0100</pubDate>
+      <guid>https://pin3da.github.io/posts/advent-of-kotlin/</guid>
+      <description>Since 2018 I started participating in Advent of Code with the goal of learning new programming languages. This year I chose kotlin, and the experience was very good. I&amp;rsquo;ll list some of the language features I liked so far.&#xA;Sealed Classes For Day&amp;rsquo;s 14 solution I wanted to have a class Entry and different subclasses of it. The only difference with normal OOP inheritance is that I wanted to restric all the object to belong exactly to a single subclass.</description>
+    </item>
+    <item>
+      <title>¿Las competencias de programación son importantes en la vida laboral?</title>
+      <link>https://pin3da.github.io/posts/programming-contests/</link>
+      <pubDate>Wed, 28 Nov 2018 14:09:38 -0200</pubDate>
+      <guid>https://pin3da.github.io/posts/programming-contests/</guid>
+      <description>Actualmente existen muchas opiniones contradictorias acerca de si las competencias de programación son útiles o no, a continuación contaré por que creo que son bastante importantes bajo mi experiencia. No duden en comentar y discutir lo escrito en este blog.&#xA;¿Qué son las competencias de programación? Son como las olimpiadas de matemáticas, pero con computadores.&#xA;En este tipo de competencias se presenta una serie de retos de diversos temas, por ejemplo, estructuras de datos, algoritmos, geometría, física, teoría de grafos, entre otros.</description>
+    </item>
+    <item>
+      <title>About</title>
+      <link>https://pin3da.github.io/about-hugo/</link>
+      <pubDate>Wed, 28 Nov 2018 13:31:53 -0200</pubDate>
+      <guid>https://pin3da.github.io/about-hugo/</guid>
+      <description>I am a software engineer with interest in distributed systems and open source.&#xA;Some projects Solutions to programming contests The most amazing thing, ever !&#xA;I strongly recommend this to everybody, this really changed my life. I think this is important because you will learn things (usually very hard to learn) as self-motivation and discipline. There are A LOT of topics that will be missing or poorly taught in our education, but with constant practice you will be able to learn all of them.</description>
+    </item>
+  </channel>
+</rss>

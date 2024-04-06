@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Coding on Manuel Pineda</title>
+    <link>https://pin3da.github.io/tags/coding/</link>
+    <description>Recent content in Coding on Manuel Pineda</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 06 Apr 2024 11:57:24 +0200</lastBuildDate>
+    <atom:link href="https://pin3da.github.io/tags/coding/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing Bazel in Fedora</title>
+      <link>https://pin3da.github.io/posts/install-bazel-fedora/</link>
+      <pubDate>Sat, 06 Apr 2024 11:57:24 +0200</pubDate>
+      <guid>https://pin3da.github.io/posts/install-bazel-fedora/</guid>
+      <description>Ref https://bazel.build/install/compile-source#bootstrap-bazel.&#xA;Download from source Download links are available at https://github.com/bazelbuild/bazel/releases.&#xA;Note: It requires downloading the distribution artifacts (dist), otherwise fails to find PROTOC :thinking_face:. More information in https://github.com/bazelbuild/bazel/issues/3801.&#xA;Dependencies Fedora doesn&amp;rsquo;t have build-essential, but it has a concept for groups of packets, the following worked:&#xA;sudo dnf groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;&#xA;sudo dnf install java-latest-openjdk java-latest-openjdk-devel&#xA;Self-contained binary This can be moved/copied to any place, e.g. cp output/bazel /usr/bin/bazel</description>
+    </item>
+  </channel>
+</rss>

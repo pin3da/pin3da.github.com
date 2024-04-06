@@ -1,0 +1,216 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Posts on Manuel Pineda</title>
+		<link>https://pin3da.github.io/posts/</link>
+		<description>Recent content in Posts on Manuel Pineda</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en</language>
+		<lastBuildDate>Sat, 06 Apr 2024 11:57:24 +0200</lastBuildDate>
+		<atom:link href="https://pin3da.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Installing Bazel in Fedora</title>
+			<link>https://pin3da.github.io/posts/install-bazel-fedora/</link>
+			<pubDate>Sat, 06 Apr 2024 11:57:24 +0200</pubDate>
+			
+			<guid>https://pin3da.github.io/posts/install-bazel-fedora/</guid>
+			<description>Ref https://bazel.build/install/compile-source#bootstrap-bazel.
+Download from source Download links are available at https://github.com/bazelbuild/bazel/releases.
+Note: It requires downloading the distribution artifacts (dist), otherwise fails to find PROTOC :thinking_face:. More information in https://github.com/bazelbuild/bazel/issues/3801.
+Dependencies Fedora doesn&amp;rsquo;t have build-essential, but it has a concept for groups of packets, the following worked:
+sudo dnf groupinstall &amp;quot;Development Tools&amp;quot; &amp;quot;Development Libraries&amp;quot;
+sudo dnf install java-latest-openjdk java-latest-openjdk-devel
+Self-contained binary This can be moved/copied to any place, e.g. cp output/bazel /usr/bin/bazel</description>
+			<content type="html"><![CDATA[<p>Ref <a href="https://bazel.build/install/compile-source#bootstrap-bazel">https://bazel.build/install/compile-source#bootstrap-bazel</a>.</p>
+<h3 id="download-from-source">Download from source</h3>
+<p>Download links are available at <a href="https://github.com/bazelbuild/bazel/releases">https://github.com/bazelbuild/bazel/releases</a>.</p>
+<p>Note: It requires downloading the distribution artifacts (<code>dist</code>), otherwise fails to find <code>PROTOC</code> :thinking_face:. More information in <a href="https://github.com/bazelbuild/bazel/issues/3801">https://github.com/bazelbuild/bazel/issues/3801</a>.</p>
+<h3 id="dependencies">Dependencies</h3>
+<p>Fedora doesn&rsquo;t have <code>build-essential</code>, but it has a concept for groups of packets, the following worked:</p>
+<p><code>sudo dnf groupinstall &quot;Development Tools&quot; &quot;Development Libraries&quot;</code></p>
+<p><code>sudo dnf install  java-latest-openjdk java-latest-openjdk-devel</code></p>
+<h3 id="self-contained-binary">Self-contained binary</h3>
+<p>This can be moved/copied to any place, e.g. <code>cp output/bazel /usr/bin/bazel</code></p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Using Fedora on a Framework Laptop</title>
+			<link>https://pin3da.github.io/posts/framework/</link>
+			<pubDate>Fri, 23 Jun 2023 18:33:51 +0200</pubDate>
+			
+			<guid>https://pin3da.github.io/posts/framework/</guid>
+			<description>I recently switched to a Framework laptop. They suggest Fedora as their linux distro, so I decided to give it a try despite being a long-time Debian user. This post aims to document some of the issues I had and how to solve them.
+Official guideline The framework team has amazing support. Their documentation just worked out of the box.
+https://guides.frame.work/Guide/Fedora+38+Installation+on+the+Framework+Laptop+13/165
+The only small change I added was the tap-buttom-map configuration in Gnome to something sensible:</description>
+			<content type="html"><![CDATA[<p>I recently switched to a <a href="https://frame.work/">Framework</a> laptop. They suggest Fedora as their linux distro, so I decided to give it a try despite being a long-time Debian user. This post aims to document some of the issues I had and how to solve them.</p>
+<h2 id="official-guideline">Official guideline</h2>
+<p>The framework team has amazing support. Their documentation just worked out of the box.</p>
+<p><a href="https://guides.frame.work/Guide/Fedora+38+Installation+on+the+Framework+Laptop+13/165">https://guides.frame.work/Guide/Fedora+38+Installation+on+the+Framework+Laptop+13/165</a></p>
+<p>The only small change I added was the tap-buttom-map configuration in Gnome to something sensible:</p>
+<p><code>gsettings set org.gnome.desktop.peripherals.touchpad tap-button-map &quot;lmr&quot;</code></p>
+<h2 id="installing-i3">Installing i3</h2>
+<p>I&rsquo;ve also been using <a href="https://i3wm.org/">i3 wm</a> for a long time. This worked pretty well, specially if you are not resource constrained and can run it on top of Gnome (e.g. using <a href="https://github.com/nmakel/i3-gnome">gnome flashback</a>).</p>
+<p>This time it didn&rsquo;t work for me, since the new Gnome settings work on <a href="https://wayland.freedesktop.org/">Wayland</a> and i3 is not compatible with it.</p>
+<h2 id="installing-sway">Installing sway</h2>
+<p>Fortunatelly, there is a drop-in replacement: <a href="https://swaywm.org/">Sway</a>. It also happens to be that Fedora supports an <a href="https://fedoraproject.org/spins/sway/">official spin</a> with it.</p>
+<p>I re-installed Fedora using the Sway spin and it almost worked out of the box.</p>
+<h3 id="small-problems">Small problems</h3>
+<p>Note: In order to update the config, you can copy the default config (<code>/etc/sway/config</code>) to <code>~/.config/sway/config</code> and edit it there.</p>
+<h4 id="1-scaling">1. Scaling</h4>
+<p>For some reason the default scaling is set to 2.0, which is too much. To solve it you need to get the name of your display by doing:</p>
+<p><code>swaymsg -t get_outputs</code></p>
+<p>You will see the name of the output (e.g. &ldquo;DP-3&rdquo;) and the current scaling factor.</p>
+<p>Then you can update the scaling to a reasonable value in the sway config:</p>
+<p><code>output eDP-1 scale 1.25</code></p>
+<h4 id="2-missing-fonts">2. Missing fonts</h4>
+<p>Some of the icons were broken, I installed fontawesome <code>sudo dnf install fontawesome-fonts</code> which fixed most of the issues. For the other icons I went to the waybar configuration and changed them.</p>
+<h4 id="3-touchpad">3. Touchpad</h4>
+<p>It was not working by default. The solution was very similar to the scaling issue. First ran <code>swaymsg -t get_inputs</code>, look the name of the touchpad and then add a new entry to the sway config:</p>
+<pre tabindex="0"><code>input &#34;&lt;ID from prev command&gt;_Touchpad&#34;  {
+      tap enabled
+      tap_button_map lmr
+}
+</code></pre><h2 id="thoughts">Thoughts</h2>
+<p>Overall I&rsquo;m very happy with Fedora + Sway spin. It is easy to configure and it works well with the Framework hardware.</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>Advent of Kotlin</title>
+			<link>https://pin3da.github.io/posts/advent-of-kotlin/</link>
+			<pubDate>Tue, 22 Dec 2020 15:20:52 +0100</pubDate>
+			
+			<guid>https://pin3da.github.io/posts/advent-of-kotlin/</guid>
+			<description>Since 2018 I started participating in Advent of Code with the goal of learning new programming languages. This year I chose kotlin, and the experience was very good. I&amp;rsquo;ll list some of the language features I liked so far.
+Sealed Classes For Day&amp;rsquo;s 14 solution I wanted to have a class Entry and different subclasses of it. The only difference with normal OOP inheritance is that I wanted to restric all the object to belong exactly to a single subclass.</description>
+			<content type="html"><![CDATA[<p>Since <a href="https://github.com/pin3da/advent-of-code/tree/master/2018">2018</a> I started participating in <a href="https://adventofcode.com/">Advent of Code</a> with the goal of learning new programming languages. This year I chose <a href="https://kotlinlang.org/">kotlin</a>, and the experience was very good. I&rsquo;ll list some of the language features I liked so far.</p>
+<h2 id="sealed-classes">Sealed Classes</h2>
+<p>For <a href="https://adventofcode.com/2020/day/14">Day&rsquo;s 14</a> solution I wanted to have a class <code>Entry</code> and different subclasses of it. The only difference with normal <a href="https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)">OOP inheritance</a> is that I wanted to restric all the object to belong exactly to a single subclass. It turns out that <a href="https://kotlinlang.org/docs/reference/sealed-classes.html">sealed classes</a> are designed for this behavior.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Entry</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mask</span>(<span style="color:#66d9ef">val</span> mask: CharArray) : Entry()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mem</span>(<span style="color:#66d9ef">val</span> addr: Long, <span style="color:#66d9ef">val</span> value: Long) : Entry()</span></span></code></pre></div>
+<h2 id="when-statement">When statement</h2>
+<p>Now, in order to evaluate the different kinds of <code>Entry</code> we need to conditionally check its &ldquo;real&rdquo; type. This is a good use case for the <code>when</code> statement:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">when</span> (entry) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">is</span> Mask <span style="color:#f92672">-&gt;</span> mask = entry.mask
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">is</span> Mem <span style="color:#f92672">-&gt;</span> memory[entry.addr] = applyMask(entry.<span style="color:#66d9ef">value</span>, mask)
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>Since the class was sealed, the compiler <em>knows</em> all the possible subclasses and will verify that there is a proper evaluation for all of them. For instance, if we add a new subclass of <code>Entry</code> we will get an error in the code above (which would be uncaught otherwise).</p>
+<p>If we add the subclass <code>Extra</code>, the compiler will show the following error: <code>'when' expression must be exhaustive, add necessary 'is Extra' branch or 'else' branch instead</code>.</p>
+<p>Another nice property of the <code>when</code> statement is that we can use it for conditional branching executions (an statement), but also as an expression.</p>
+<ul>
+<li>Conditional execution, this is very similar to <code>switch</code> in other programming languages (nothing surprising here):
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> a = <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">when</span> (a) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span> <span style="color:#f92672">-&gt;</span> println(<span style="color:#e6db74">&#34;first condition&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">4</span> <span style="color:#f92672">-&gt;</span> println(<span style="color:#e6db74">&#34;second condition&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#f92672">-&gt;</span> println(<span style="color:#e6db74">&#34;else&#34;</span>)
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></li>
+<li>Statement: This allows to reduce unnecessary mutability in the message, unlike the <code>if</code> alternative:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#75715e">// Immutable (defined as val)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> msg = <span style="color:#66d9ef">when</span>(a) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">3</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;first condition&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">4</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;second condition&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;else&#34;</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#75715e">// Mutable (defined as var)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> msg = <span style="color:#e6db74">&#34;else&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (a <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>) {
+</span></span><span style="display:flex;"><span>    msg = <span style="color:#e6db74">&#34;first condition&#34;</span> 
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) {
+</span></span><span style="display:flex;"><span>    msg = <span style="color:#e6db74">&#34;second condition&#34;</span>
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></li>
+</ul>
+<p>Note: Initially I thouhgt that having <code>val</code> and <code>var</code> was very confusing, but in practice I found it handy and easy to remember  ¯\<em>(ツ)</em>/¯</p>
+<h2 id="smart-cast">Smart Cast</h2>
+<p>Kotlin keeps track of the results of the <code>is</code> operator, which becames really handy in the case you need to downcast an object. Based of the code above, let&rsquo;s check the differences between Java and Kotlin.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Java" data-lang="Java"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (expr <span style="color:#66d9ef">instanceof</span> Mask) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// cast needed in order to access &#34;Mask&#34; members.</span>
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(((Mask)expr).<span style="color:#a6e22e">mask</span>);
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (expr <span style="color:#66d9ef">is</span> Mask) {
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// No cast needed.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   print(expr.mask)
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<h2 id="functional-flavor">Functional flavor</h2>
+<p>After a few solutions I got used to the functional-like approach that kotlin uses, the support for lambda functions is really good and the code ends being clear and concise. This will also help to reduce mutablility in some places.</p>
+<p>Example, let&rsquo;s suppose we have a file <code>01.in</code> with several lines representing integer numbers, and we want to compute the sum of all of them.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#75715e">// Both variables can be immutable.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">val</span> numbers = File(<span style="color:#e6db74">&#34;data/01.in&#34;</span>).readLines().map { <span style="color:#66d9ef">it</span>.toInt() }
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> sum = numbers.sum()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Do something else with numbers</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#75715e">// Both variables must be mutable.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> numbers = mutableListOf()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (line <span style="color:#66d9ef">in</span> File(<span style="color:#e6db74">&#34;data/01.in&#34;</span>).readLines()) {
+</span></span><span style="display:flex;"><span>    numbers.add(line.toInt())
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> sum = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (n <span style="color:#66d9ef">in</span> numbers) {
+</span></span><span style="display:flex;"><span>    sum <span style="color:#f92672">+=</span> n
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Do something else with numbers</span></span></span></code></pre></div>
+<h2 id="data-classes">Data Classes</h2>
+<p>In most of the challenges I ended creating classes that only hold information, and use those classes in maps or sets (which require some sort of comparator or hash). I also often want to print these objects.</p>
+<p>In C++ I would end doing something like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cc" data-lang="cc"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Entry</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> add;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> value;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Default comparator since C++ 20: https://en.cppreference.com/w/cpp/language/default_comparisons
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;=&gt;</span>(<span style="color:#66d9ef">const</span> Entry<span style="color:#f92672">&amp;</span>) <span style="color:#66d9ef">const</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">default</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ostream<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">&lt;&lt;</span>(ostream<span style="color:#f92672">&amp;</span> os, <span style="color:#66d9ef">const</span> Entry<span style="color:#f92672">&amp;</span> entry) {
+</span></span><span style="display:flex;"><span>    os <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;{&#39;</span> <span style="color:#f92672">&lt;&lt;</span> entry.add <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> entry.value <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#39;}&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> os;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div>
+<p>But in kotlin, it is a one-liner :D.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">data</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Entry</span>(<span style="color:#66d9ef">val</span> add: Int, <span style="color:#66d9ef">val</span> value: Long)</span></span></code></pre></div>
+<hr>
+<h2 id="next-">Next ?</h2>
+<p>I will keep trying Kotlin in other scenarios, and update this post if I found somethig interesting. Also, if you have interesting ideas for next year&rsquo;s advent of code, please let me know! (contact in the &ldquo;about&rdquo; page of this site).</p>
+]]></content>
+		</item>
+		
+		<item>
+			<title>¿Las competencias de programación son importantes en la vida laboral?</title>
+			<link>https://pin3da.github.io/posts/programming-contests/</link>
+			<pubDate>Wed, 28 Nov 2018 14:09:38 -0200</pubDate>
+			
+			<guid>https://pin3da.github.io/posts/programming-contests/</guid>
+			<description>Actualmente existen muchas opiniones contradictorias acerca de si las competencias de programación son útiles o no, a continuación contaré por que creo que son bastante importantes bajo mi experiencia. No duden en comentar y discutir lo escrito en este blog.
+¿Qué son las competencias de programación? Son como las olimpiadas de matemáticas, pero con computadores.
+En este tipo de competencias se presenta una serie de retos de diversos temas, por ejemplo, estructuras de datos, algoritmos, geometría, física, teoría de grafos, entre otros.</description>
+			<content type="html"><![CDATA[<p>Actualmente existen muchas opiniones contradictorias acerca de si las competencias de programación son útiles o no, a continuación contaré por que creo que son bastante importantes bajo mi experiencia. No duden en comentar y discutir lo escrito en este blog.</p>
+<h2 id="qué-son-las-competencias-de-programación">¿Qué son las competencias de programación?</h2>
+<p>Son como las olimpiadas de matemáticas, pero con computadores.</p>
+<p>En este tipo de competencias se presenta una serie de retos de diversos temas, por ejemplo, estructuras de datos, algoritmos, geometría, física, teoría de grafos, entre otros. Se deben escribir programas de computador (individualmente o por equipos) para resolver dichos problemas.</p>
+<h2 id="qué-es-la-vida-laboral">¿Qué es la vida laboral?</h2>
+<p>Es una competencia de programación con duración indefinida donde nos pagan por resolver problemas. También se escriben programas de computador (individualmente o por equipos) para resolver dichos retos.</p>
+<h2 id="respuesta-a-la-pregunta-original">Respuesta a la pregunta original:</h2>
+<p>Aquí las razones por las cuales considero que las competencias de programación son importantes en la vida laboral, trataré de hacer un paralelo de las habilidades adquiridas y como se usan en la industria:</p>
+<ul>
+<li><strong>Habilidades para resolver problemas</strong>: Generalmente en las competencias de programación debemos resolver los retos de la manera más eficiente posible, para esto debemos conocer entre otras cosas, la complejidad computacional de nuestras soluciones, estructuras de datos y técnicas de programación. Cuando aplicamos estos conocimientos en nuestro trabajo, escribimos programas más rápidos, más eficientes y generalmente más simples.</li>
+<li><strong>Trabajo en equipo:</strong> Muchas competencias se realizan en equipos, generalmente de 2 o 3 personas. Esto es una experiencia increíble ya que nos ayuda a buscar formas para comunicar mejor nuestras ideas, también nos ayuda a comprender las reacciones de nuestros compañeros y a mantener un ambiente cómodo para todos. Supremamente importante en la vida laboral.</li>
+<li><strong>Revisión de código:</strong> Esto está relacionado con el punto anterior, generalmente es necesario leer código de nuestros compañeros y que ellos lean el nuestro para compartir soluciones y discutir ideas. Cuando tenemos equipos sólidos, se tiende a escribir el código de la manera más clara posible y con algún tipo de convención para que todos puedan entenderlo más fácilmente. Esto es comparable con algún tipo de <em>pair programming</em> (dado que en las competencias sólo se puede usar un computador por equipo) o el famoso <em>code review</em>. Incluso en las competencias individuales, se suele leer el código de competidores avanzados (después de terminada la competencia) para encontrar mejores maneras de solucionar los problemas. Esto nos ayuda mucho a <strong>comprender el código de las demás personas</strong>.</li>
+<li><strong>Búsqueda de errores (bugs):</strong> Todo programa de computador tiene una alta probabilidad de errores. En las competencias de programación, parte de nuestro trabajo es eliminar dichos errores de nuestros programas o los de nuestros compañeros. Esto es una habilidad que personalmente valoro mucho y que hace una gran diferencia en la vida laboral.</li>
+<li><strong>Pruebas unitarias:</strong> Cada uno de los retos, viene con un conjunto de datos para probar si nuestro código resuelve correctamente el problema o no. Esto crea el ambiente perfecto para escribir nuestro código de tal forma que podamos comprobar su salida para una entrada específica, de igual forma como lo haríamos con unit test en cualquier programa de nuestra vida laboral. En las competencias incluso existen casos de prueba los cuales podemos conocer <strong>antes</strong> de resolver el problema (parecido a lo que se pretende con TDD).</li>
+<li><strong>Preparación para entrevistas:</strong> La mayoría de las empresas (principalmente los gigantes como google o facebook) utilizan preguntas muy similares a los retos que encontramos en las competencias de programación para sus entrevistas. Al practicar constantemente podemos incrementar nuestras posibilidades de encontrar un buen trabajo (:</li>
+</ul>
+<h2 id="dónde-puedo-practicar">¿Dónde puedo practicar?</h2>
+<p>Existen muchos sitios en internet donde resolver retos de programación, entre mis favoritos están:</p>
+<ul>
+<li><a href="http://codeforces.com/">http://codeforces.com/</a></li>
+<li><a href="https://www.hackerrank.com/dashboard">https://www.hackerrank.com/dashboard</a></li>
+<li><a href="https://www.codechef.com/">https://www.codechef.com/</a></li>
+<li><a href="https://csacademy.com/">https://csacademy.com/</a></li>
+</ul>
+<h2 id="conclusión">Conclusión</h2>
+<p>Las competencias de programación no cubren el 100% de las habilidades que necesitamos para ser buenos <em>desarrolladores</em> pero son un gran complemento para lograrlo.</p>
+<p>No dudes en compartirnos tu opinión o las dudas que puedas tener al respecto.</p>
+]]></content>
+		</item>
+		
+	</channel>
+</rss>
